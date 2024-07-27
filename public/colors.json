@@ -107,6 +107,60 @@
         40
       ],
       "references": []
+    },
+    "Sulphine Yellow": {
+      "CMYK": [
+        24,
+        32,
+        100,
+        4
+      ],
+      "references": []
+    },
+    "Dull Violet Black": {
+      "CMYK": [
+        57,
+        60,
+        17,
+        0
+      ],
+      "references": []
+    },
+    "Blue": {
+      "CMYK": [
+        95,
+        54,
+        0,
+        0
+      ],
+      "references": []
+    },
+    "Maple": {
+      "CMYK": [
+        5,
+        26,
+        56,
+        20
+      ],
+      "references": []
+    },
+    "Visoris Lake": {
+      "CMYK": [
+        40,
+        71,
+        55,
+        40
+      ],
+      "references": []
+    },
+    "Engenia Red": {
+      "CMYK": [
+        7,
+        76,
+        60,
+        0
+      ],
+      "references": []
     }
   },
   "palettes": {

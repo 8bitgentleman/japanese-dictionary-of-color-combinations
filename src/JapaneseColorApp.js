@@ -5,7 +5,7 @@ import AddPaletteForm from './components/AddPaletteForm';
 import DownloadButton from './components/DownloadButton';
 import ColorLookup from './components/ColorLookup';
 import PaletteLookup from './components/PaletteLookup';
-
+import PaletteGrid from './components/PaletteGrid';
 
 const FileUpload = ({ onDataLoaded }) => {
   const [error, setError] = useState('');
@@ -61,6 +61,7 @@ const FileUpload = ({ onDataLoaded }) => {
 
 const JapaneseColorApp = () => {
     const [data, setData] = useState(null);
+    const [activeTab, setActiveTab] = useState('colors');
   
     useEffect(() => {
       fetch('/colors.json')
@@ -141,20 +142,46 @@ const JapaneseColorApp = () => {
       }
     };
   
+    const renderActiveTab = () => {
+      if (!data) return null;
+  
+      switch (activeTab) {
+        case 'main':
+          return (
+            <>
+              <div>
+                <h2>Colors</h2>
+                <ColorLookup colorData={data.colors} paletteData={data.palettes} />
+              </div>
+              <div>
+                <h2>Palettes</h2>
+                <PaletteLookup paletteData={data.palettes} colorData={data.colors} />
+              </div>
+            </>
+          );
+        case 'grid':
+          return (
+            <div>
+              <h2>Palette Grid</h2>
+              <PaletteGrid paletteData={data.palettes} colorData={data.colors} />
+            </div>
+          );
+        default:
+          return null;
+      }
+    };
+  
     return (
       <div className="app-container">
         <h1>Japanese Color Combinations</h1>
         <FileUpload onDataLoaded={handleDataLoaded} />
         {data ? (
           <>
-            <div>
-              <h2>Colors</h2>
-              <ColorLookup colorData={data.colors} paletteData={data.palettes} />
+            <div className="tabs">
+              <button onClick={() => setActiveTab('main')} className={activeTab === 'main' ? 'active' : ''}>Main</button>
+              <button onClick={() => setActiveTab('grid')} className={activeTab === 'grid' ? 'active' : ''}>Palette Grid</button>
             </div>
-            <div>
-              <h2>Palettes</h2>
-              <PaletteLookup paletteData={data.palettes} colorData={data.colors} />
-            </div>
+            {renderActiveTab()}
             <AddColorForm onAddColor={handleAddColor} />
             <AddPaletteForm onAddPalette={handleAddPalette} colors={data.colors} />
             <DownloadButton data={data} />
@@ -165,5 +192,6 @@ const JapaneseColorApp = () => {
       </div>
     );
   };
+
   
   export default JapaneseColorApp;

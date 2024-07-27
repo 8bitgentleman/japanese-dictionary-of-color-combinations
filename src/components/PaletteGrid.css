@@ -1,0 +1,74 @@
+/* components/PaletteGrid.css */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.palette-card {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.palette-card:hover {
+  transform: scale(1.05);
+}
+
+.palette-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  height: 150px;
+}
+
+.palette-swatch {
+  flex: 1 0 25%; /* This ensures that we have at least 4 colors per row */
+  min-width: 25%;
+  height: 50%;
+  position: relative; /* Ensures the popover is positioned relative to the swatch */
+}
+
+.palette-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 8px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.palette-card:hover .palette-name {
+  opacity: 1;
+}
+
+.popover {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* Prevent pointer events on the popover */
+}
+/* components/PaletteGrid.css */
+.popover-bottom {
+  top: auto;
+  bottom: -30px; /* Adjust based on popover height */
+  z-index: 9999;
+}
+.palette-swatch:hover .popover {
+  opacity: 1; /* Show popover on hover */
+}
