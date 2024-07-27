@@ -1,0 +1,136 @@
+{
+  "colors": {
+    "Black": {
+      "CMYK": [
+        20,
+        10,
+        15,
+        100
+      ],
+      "references": [
+        5,
+        64
+      ]
+    },
+    "Slate Color": {
+      "CMYK": [
+        85,
+        70,
+        62,
+        30
+      ],
+      "references": [
+        5,
+        63,
+        71
+      ]
+    },
+    "Spectrum Red": {
+      "CMYK": [
+        5,
+        100,
+        100,
+        0
+      ],
+      "references": [
+        5,
+        11
+      ]
+    },
+    "Ivory Bluff": {
+      "CMYK": [
+        8,
+        15,
+        40,
+        0
+      ],
+      "references": [
+        5
+      ]
+    },
+    "Dark Tyriana Blue": {
+      "CMYK": [
+        90,
+        66,
+        36,
+        50
+      ],
+      "references": [
+        5
+      ]
+    },
+    "Cobalt Green": {
+      "CMYK": [
+        42,
+        0,
+        42,
+        0
+      ],
+      "references": [
+        5
+      ]
+    },
+    "Warm Gray": {
+      "CMYK": [
+        37,
+        28,
+        36,
+        3
+      ],
+      "references": [
+        5
+      ]
+    },
+    "White": {
+      "CMYK": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "references": []
+    },
+    "Mineral Gray": {
+      "CMYK": [
+        33,
+        18,
+        25,
+        7
+      ],
+      "references": []
+    }
+  },
+  "palettes": {
+    "5": {
+      "section": "January",
+      "colors": [
+        "Black",
+        "Spectrum Red",
+        "Ivory Bluff",
+        "Dark Tyriana Blue",
+        "Cobalt Green",
+        "Warm Gray"
+      ]
+    },
+    "10": {
+      "section": "February",
+      "name": "10",
+      "colors": [
+        "White",
+        "Engenia Red",
+        "Visoris Lake",
+        "Mineral Gray",
+        "Maple"
+      ]
+    },
+    "52": {
+      "section": "September",
+      "name": "52",
+      "colors": [
+        "Sulphine Yellow",
+        "Dull Violet Black",
+        "Blue"
+      ]
+    }
+  }
+}
