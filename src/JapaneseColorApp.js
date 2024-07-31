@@ -61,7 +61,7 @@ const FileUpload = ({ onDataLoaded }) => {
 
 const JapaneseColorApp = () => {
     const [data, setData] = useState(null);
-    const [activeTab, setActiveTab] = useState('colors');
+    const [activeTab, setActiveTab] = useState('main');
   
     useEffect(() => {
       fetch('/colors.json')
@@ -148,24 +148,13 @@ const JapaneseColorApp = () => {
       switch (activeTab) {
         case 'main':
           return (
-            <>
-              <div>
-                <h2>Colors</h2>
-                <ColorLookup colorData={data.colors} paletteData={data.palettes} />
-              </div>
-              <div>
-                <h2>Palettes</h2>
-                <PaletteLookup paletteData={data.palettes} colorData={data.colors} />
-              </div>
-            </>
-          );
-        case 'grid':
-          return (
-            <div>
-              <h2>Palette Grid</h2>
-              <PaletteGrid paletteData={data.palettes} colorData={data.colors} />
+            <div className="main-content">
+              <ColorLookup colorData={data.colors} paletteData={data.palettes} />
+              <PaletteLookup paletteData={data.palettes} colorData={data.colors} />
             </div>
           );
+        case 'grid':
+          return <PaletteGrid paletteData={data.palettes} colorData={data.colors} />;
         default:
           return null;
       }
@@ -174,13 +163,14 @@ const JapaneseColorApp = () => {
     return (
       <div className="app-container">
         <h1>Japanese Color Combinations</h1>
-        <FileUpload onDataLoaded={handleDataLoaded} />
-        {data ? (
-          <>
-            <div className="tabs">
+        {/* <FileUpload onDataLoaded={handleDataLoaded} /> */}
+        <div className="tabs">
               <button onClick={() => setActiveTab('main')} className={activeTab === 'main' ? 'active' : ''}>Main</button>
               <button onClick={() => setActiveTab('grid')} className={activeTab === 'grid' ? 'active' : ''}>Palette Grid</button>
-            </div>
+        </div>
+        {data ? (
+          <>
+            
             {renderActiveTab()}
             <AddColorForm onAddColor={handleAddColor} />
             <AddPaletteForm onAddPalette={handleAddPalette} colors={data.colors} />

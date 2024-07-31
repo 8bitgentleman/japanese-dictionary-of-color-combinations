@@ -1,22 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Zen+Kaku+Gothic+New&display=swap');
+
+:root {
+  --bg-color: #f5f5f5;
+  --text-color: #333333;
+  --accent-color: #d14836;
+  --secondary-color: #6b6b6b;
+  --border-color: #e0e0e0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
 body {
-  background-color: #faed8f;
-  background-image: url('https://www.transparenttextures.com/patterns/textured-paper.png');
-  background-repeat: repeat;
-  /* Tile the texture */
-  background-size: auto;
-  /* Keep the original size */
-  background-attachment: fixed;
-  /* Fixed background */
-  color: #333;
-  /* Text color for contrast */
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Zen Kaku Gothic New", sans-serif;
 }
 
 .app-container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
+  padding: 40px 20px;
+  animation: fadeIn 0.5s ease-out;
+}
 
+h1, h2, h3, h4 {
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5em;
+  text-align: center;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: var(--accent-color);
+}
+
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #b83e2e;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+input {
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.tabs button {
+  background-color: transparent;
+  color: var(--text-color);
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.tabs button.active {
+  color: var(--accent-color);
+  font-weight: 500;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+/* Retain and update existing color-related classes */
+.palette-colors {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  animation: slideIn 0.5s ease-out;
+}
+
+.color-square {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.color-square:hover {
+  transform: scale(1.1);
+}
+
+.color-swatch {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.color-swatch:hover {
+  transform: scale(1.05);
+}
+
+.color-chip {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 16px;
+  padding: 4px 8px;
+  margin: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.color-chip:hover {
+  background-color: #e0e0e0;
+}
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+
+.copy-button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 h1 {
@@ -38,124 +203,21 @@ h4 {
   font-size: 1.25em;
   font-weight: bold;
 }
-
-.card {
-  border: 1px solid rgb(115, 15, 31, .2);
-  border-radius: 4px;
-  padding: 20px;
-  margin-bottom: 20px;
+/* Japanese design element */
+.japanese-pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.05;
+  z-index: -1;
 }
 
-.search-container {
-  display: flex;
-  margin-bottom: 20px;
-}
-
-.search-container input {
-  flex-grow: 1;
-  padding: 10px;
-  margin-right: 10px;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #730F1F;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.alert {
-  background-color: #f8d7da;
-  color: #721c24;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-}
-
-.result-item {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.flex-container {
-  display: flex;
-  align-items: center;
-}
-
-.color-swatch {
-  width: 50px;
-  height: 50px;
-  border-radius: 4px;
-  margin-right: 10px;
-}
-
-.copy-button {
-  margin-left: 10px;
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.file-upload {
-  margin-bottom: 20px;
-}
-
-.file-upload-label {
-  cursor: pointer;
-}
-
-.file-upload-area {
-  border: 2px dashed #ddd;
-  border-radius: 4px;
-  padding: 20px;
-  text-align: center;
-}
-
-.upload-icon {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.hidden-input {
-  display: none;
-}
-
-.placeholder-text {
-  text-align: center;
-  color: #777;
-}
-
-.error {
-  color: #730F1F;
-}
-
-input {
-  border: 1px solid #730F1F;
-  border-radius: 4px;
-}
-
-.color-chip {
-  display: inline-flex;
-  align-items: center;
-  background-color: #f0f0f0;
-  border-radius: 16px;
-  padding: 4px 8px;
-  margin: 4px;
-  font-size: 14px;
-}
-
-.color-square {
-  width: 10px;
-  height: 10px;
-  margin-right: 6px;
-  border: 1px solid #ccc;
-  display: inline-block;
+/* Subtle animation for content */
+.main-content, .actions {
+  animation: slideIn 0.5s ease-out;
 }
 
 .remove-color {
@@ -170,36 +232,4 @@ input {
 
 .remove-color:hover {
   color: #333;
-}
-
-.palette-colors {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 8px;
-}
-
-/* Add this to your JapaneseColorApp.css file */
-/* Add this to your JapaneseColorApp.css file if not already present */
-.tabs {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.tabs button {
-  background-color: #f0f0f0;
-  border: none;
-  padding: 10px 20px;
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.tabs button.active {
-  background-color: #ddd;
-  font-weight: bold;
-}
-
-.tabs button:hover {
-  background-color: #e0e0e0;
 }
