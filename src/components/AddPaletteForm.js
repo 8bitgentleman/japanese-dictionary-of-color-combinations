@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 const AddPaletteForm = ({ onAddPalette, colors }) => {
   const [section, setSection] = useState('');
   const [name, setName] = useState('');
   const [colorInput, setColorInput] = useState('');
   const [paletteColors, setPaletteColors] = useState([]);
+  const [sectionInput, setSectionInput] = useState('');
+
+  // Extract existing sections from colors object
+  const existingSections = useMemo(() => {
+    const sections = new Set();
+    Object.values(colors).forEach(color => {
+      if (color.references) {
+        color.references.forEach(ref => {
+          if (typeof ref === 'string' && ref.trim() !== '') {
+            sections.add(ref.trim());
+          }
+        });
+      }
+    });
+    return Array.from(sections);
+  }, [colors]);
 
   const handleAddColorToPalette = () => {
     if (colorInput.trim() !== '' && !paletteColors.includes(colorInput.trim())) {
@@ -32,15 +48,24 @@ const AddPaletteForm = ({ onAddPalette, colors }) => {
     setColorInput(e.target.value);
   };
 
+  const handleSectionInputChange = (e) => {
+    setSectionInput(e.target.value);
+    setSection(e.target.value);
+  };
+
   const filteredColors = Object.keys(colors).filter(colorName =>
     colorName.toLowerCase().includes(colorInput.toLowerCase())
+  );
+
+  const filteredSections = existingSections.filter(sectionName =>
+    sectionName.toLowerCase().includes(sectionInput.toLowerCase())
   );
 
   const ColorChip = ({ color }) => (
     <span className="color-chip">
       <span 
         className="color-square" 
-        style={{ backgroundColor: colors[color] || 'transparent' }}
+        style={{ backgroundColor: color }}
       ></span>
       {color}
       <button 
@@ -61,9 +86,15 @@ const AddPaletteForm = ({ onAddPalette, colors }) => {
           <label htmlFor="section">Section</label>
           <input
             id="section"
-            value={section}
-            onChange={(e) => setSection(e.target.value)}
+            value={sectionInput}
+            onChange={handleSectionInputChange}
+            list="section-suggestions"
           />
+          <datalist id="section-suggestions">
+            {filteredSections.map((sectionName, index) => (
+              <option key={index} value={sectionName} />
+            ))}
+          </datalist>
         </div>
         <div className="form-group">
           <label htmlFor="name">Palette Name</label>

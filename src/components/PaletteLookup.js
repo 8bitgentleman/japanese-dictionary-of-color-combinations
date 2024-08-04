@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ColorSwatch from './ColorSwatch';
-import CopyButton from './CopyButton';
+import ColorSwatchCard from './ColorSwatchCard';
 
 const PaletteLookup = ({ paletteData, colorData }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -45,24 +44,18 @@ const PaletteLookup = ({ paletteData, colorData }) => {
         </div>
       )}
       {searchResults.map((paletteInfo, paletteIndex) => (
-        <div key={paletteIndex} className="result-item">
+        <div key={paletteIndex} className="palette-result">
           <h3>Palette {paletteInfo.id}: {paletteInfo.section}</h3>
-          {paletteInfo.colors.map((colorInfo, colorIndex) => (
-            <div key={colorIndex} className="color-info">
-              <h4>{colorInfo.name}</h4>
-              {colorInfo.error ? (
-                <p className="error">{colorInfo.error}</p>
-              ) : (
-                <>
-                  <div className="flex-container">
-                    <p><span style={{fontWeight: "bold"}}>CMYK: </span><i>{colorInfo.CMYK.join(', ')}</i></p>
-                    <CopyButton text={colorInfo.CMYK.join(', ')} />
-                  </div>
-                  <ColorSwatch cmyk={colorInfo.CMYK} />
-                </>
-              )}
-            </div>
-          ))}
+          <div className="color-grid">
+            {paletteInfo.colors.map((colorInfo, colorIndex) => (
+              <ColorSwatchCard
+                key={colorIndex}
+                colorName={colorInfo.name}
+                cmyk={colorInfo.CMYK}
+                error={colorInfo.error}
+              />
+            ))}
+          </div>
         </div>
       ))}
     </div>
