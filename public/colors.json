@@ -88,7 +88,9 @@
         0,
         0
       ],
-      "references": []
+      "references": [
+        "79"
+      ]
     },
     "Mineral Gray": {
       "CMYK": [
@@ -161,6 +163,24 @@
         0
       ],
       "references": []
+    },
+    "Pale Purplish Vinaceous": {
+      "CMYK": [
+        0,
+        13,
+        8,
+        0
+      ],
+      "references": []
+    },
+    "Hermosa Pink": {
+      "CMYK": [
+        0,
+        30,
+        6,
+        0
+      ],
+      "references": []
     }
   },
   "palettes": {
@@ -193,6 +213,18 @@
         "Sulphine Yellow",
         "Dull Violet Black",
         "Blue"
+      ]
+    },
+    "79": {
+      "section": "Kimono",
+      "name": "79",
+      "colors": [
+        "Dull Purplish Black",
+        "Corinthian Pink",
+        "Scarlet",
+        "White",
+        "Chromium Green",
+        "Khaki"
       ]
     }
   }
