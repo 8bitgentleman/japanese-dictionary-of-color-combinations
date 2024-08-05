@@ -139,9 +139,11 @@ input:focus {
   display: inline-block;
   transition: transform 0.3s ease;
 }
-
-.color-square:hover {
-  transform: scale(1.1);
+.color-swatch-card {
+  transition: transform 0.3s ease;
+}
+.color-swatch-card:hover {
+  transform: scale(1.01);
 }
 
 .color-swatch {
@@ -169,6 +171,11 @@ input:focus {
 
 .color-chip:hover {
   background-color: #e0e0e0;
+}
+.color-chip .color-square{
+  width:20px;
+  height:20px;
+  margin-bottom:0 !important;
 }
 .flex-container {
   display: flex;

@@ -32,10 +32,7 @@
         100,
         0
       ],
-      "references": [
-        5,
-        11
-      ]
+      "references": []
     },
     "Ivory Bluff": {
       "CMYK": [
@@ -89,7 +86,8 @@
         0
       ],
       "references": [
-        "79"
+        "79",
+        "1"
       ]
     },
     "Mineral Gray": {
@@ -108,7 +106,9 @@
         80,
         40
       ],
-      "references": []
+      "references": [
+        "2"
+      ]
     },
     "Sulphine Yellow": {
       "CMYK": [
@@ -190,9 +190,280 @@
         0
       ],
       "references": []
+    },
+    "Cameo Pink": {
+      "CMYK": [
+        10,
+        32,
+        19,
+        0
+      ],
+      "references": []
+    },
+    "Pale Cinnamon-Pink": {
+      "CMYK": [
+        3,
+        12,
+        19,
+        0
+      ],
+      "references": []
+    },
+    "Fawn": {
+      "CMYK": [
+        18,
+        31,
+        30,
+        0
+      ],
+      "references": []
+    },
+    "Coral Red": {
+      "CMYK": [
+        0,
+        55,
+        40,
+        0
+      ],
+      "references": []
+    },
+    "Fresh Color": {
+      "CMYK": [
+        0,
+        53,
+        45,
+        0
+      ],
+      "references": []
+    },
+    "Grenadine Pink": {
+      "CMYK": [
+        0,
+        62,
+        58,
+        0
+      ],
+      "references": []
+    },
+    "Esine Pink": {
+      "CMYK": [
+        0,
+        63,
+        23,
+        0
+      ],
+      "references": []
+    },
+    "Pale Ecru-Drab": {
+      "CMYK": [
+        23,
+        25,
+        27,
+        0
+      ],
+      "references": []
+    },
+    "Spinel Red": {
+      "CMYK": [
+        0,
+        70,
+        21,
+        0
+      ],
+      "references": []
+    },
+    "Old Rose": {
+      "CMYK": [
+        15,
+        70,
+        40,
+        0
+      ],
+      "references": []
+    },
+    "Eugenia Red": {
+      "CMYK": [
+        7,
+        76,
+        60,
+        0
+      ],
+      "references": []
+    },
+    "Eugenia Red 2": {
+      "CMYK": [
+        0,
+        80,
+        50,
+        10
+      ],
+      "references": []
+    },
+    "Raw Sienna": {
+      "CMYK": [
+        18,
+        58,
+        100,
+        12
+      ],
+      "references": [
+        "2"
+      ]
+    },
+    "Vinaceous Tawny": {
+      "CMYK": [
+        17,
+        72,
+        100,
+        6
+      ],
+      "references": []
+    },
+    "Jasper Red": {
+      "CMYK": [
+        2,
+        83,
+        100,
+        0
+      ],
+      "references": []
+    },
+    "Red Orange": {
+      "CMYK": [
+        9,
+        90,
+        100,
+        0
+      ],
+      "references": []
+    },
+    "Etruscan Red": {
+      "CMYK": [
+        16,
+        80,
+        74,
+        6
+      ],
+      "references": []
+    },
+    "Burnt Sienna": {
+      "CMYK": [
+        22,
+        76,
+        100,
+        15
+      ],
+      "references": []
+    },
+    "Ocher red": {
+      "CMYK": [
+        18,
+        73,
+        63,
+        20
+      ],
+      "references": []
+    },
+    "Scarlet": {
+      "CMYK": [
+        10,
+        95,
+        72,
+        7
+      ],
+      "references": []
+    },
+    "Carmine": {
+      "CMYK": [
+        0,
+        100,
+        75,
+        16
+      ],
+      "references": []
+    },
+    "Indian Lake": {
+      "CMYK": [
+        12,
+        89,
+        35,
+        9
+      ],
+      "references": []
+    },
+    "Rosolanc Purple": {
+      "CMYK": [
+        30,
+        90,
+        33,
+        0
+      ],
+      "references": []
+    },
+    "Pomegranate Purple": {
+      "CMYK": [
+        23,
+        100,
+        50,
+        9
+      ],
+      "references": []
+    },
+    "Hydrangea Red": {
+      "CMYK": [
+        38,
+        90,
+        70,
+        0
+      ],
+      "references": []
+    },
+    "Brick Red": {
+      "CMYK": [
+        22,
+        84,
+        100,
+        18
+      ],
+      "references": []
     }
   },
   "palettes": {
+    "1": {
+      "section": "January",
+      "name": "1",
+      "colors": [
+        "Seashell Pink",
+        "White",
+        "Sulphur Yellow",
+        "Glaucous Green",
+        "Grayish Lavender"
+      ]
+    },
+    "2": {
+      "section": "January",
+      "name": "2",
+      "colors": [
+        "Citron Yellow",
+        "Light Pinkish Cinnamon",
+        "Naples Yellow",
+        "Pale Burnt Lake",
+        "Raw Sienna",
+        "Pinkish Cinnamon",
+        "Citrine"
+      ]
+    },
+    "3": {
+      "section": "January",
+      "name": "3",
+      "colors": [
+        "Vandyke Brown",
+        "Light Porcelain Green",
+        "Ecru",
+        "Dark Citrine",
+        "Deep Violet / Plumbeous"
+      ]
+    },
     "5": {
       "section": "January",
       "colors": [
