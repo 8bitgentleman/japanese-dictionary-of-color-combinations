@@ -140,7 +140,9 @@
         56,
         20
       ],
-      "references": []
+      "references": [
+        "6"
+      ]
     },
     "Visoris Lake": {
       "CMYK": [
@@ -275,7 +277,9 @@
         40,
         0
       ],
-      "references": []
+      "references": [
+        "6"
+      ]
     },
     "Eugenia Red": {
       "CMYK": [
@@ -664,7 +668,9 @@
         100,
         0
       ],
-      "references": []
+      "references": [
+        "6"
+      ]
     },
     "Pyrite Yellow": {
       "CMYK": [
@@ -1207,6 +1213,18 @@
         "Dark Tyriana Blue",
         "Cobalt Green",
         "Warm Gray"
+      ]
+    },
+    "6": {
+      "section": "January",
+      "name": "6",
+      "colors": [
+        "Grayish Lavender",
+        "Apricot Yellow",
+        "Old Rose",
+        "Deep Violet / Plumbeous",
+        "Violet Blue",
+        "Maple"
       ]
     },
     "10": {
