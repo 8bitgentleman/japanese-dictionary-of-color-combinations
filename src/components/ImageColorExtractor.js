@@ -1,25 +1,30 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Camera } from 'lucide-react';
+import ColorThief from 'colorthief';
+import ColorSwatchCard from './ColorSwatchCard';
+import './ImageColorExtractor.css';
 
-const ImageColorExtractor = ({ onColorSelect, colorData, paletteData }) => {
+const ImageColorExtractor = ({ colorData, paletteData }) => {
   const [image, setImage] = useState(null);
   const [extractedColors, setExtractedColors] = useState([]);
   const [selectedColor, setSelectedColor] = useState(null);
   const [matchingColors, setMatchingColors] = useState([]);
   const [matchingPalettes, setMatchingPalettes] = useState([]);
-  const canvasRef = useRef(null);
+  const [optionalColor, setOptionalColor] = useState(null);
   const fileInputRef = useRef(null);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    if (image) {
+      extractColors(image);
+    }
+  }, [image]);
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.onload = (event) => {
-      const img = new Image();
-      img.onload = () => {
-        setImage(img);
-        extractColors(img);
-      };
-      img.src = event.target.result;
+      setImage(event.target.result);
     };
     reader.readAsDataURL(file);
   };
@@ -29,87 +34,99 @@ const ImageColorExtractor = ({ onColorSelect, colorData, paletteData }) => {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       const video = document.createElement('video');
       video.srcObject = stream;
-      video.play();
+      await video.play();
 
-      video.onloadedmetadata = () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        canvas.getContext('2d').drawImage(video, 0, 0);
-        const capturedImage = new Image();
-        capturedImage.src = canvas.toDataURL('image/jpeg');
-        capturedImage.onload = () => {
-          setImage(capturedImage);
-          extractColors(capturedImage);
-        };
-        stream.getTracks().forEach(track => track.stop());
-      };
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0);
+      
+      const capturedImage = canvas.toDataURL('image/jpeg');
+      setImage(capturedImage);
+      
+      stream.getTracks().forEach(track => track.stop());
     } catch (error) {
       console.error('Error accessing camera:', error);
     }
   };
 
-  const extractColors = (img) => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0, img.width, img.height);
+  const extractColors = async (imageSource) => {
+    const colorThief = new ColorThief();
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.src = imageSource;
 
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const pixels = imageData.data;
-    const colorCounts = {};
-
-    for (let i = 0; i < pixels.length; i += 4) {
-      const r = pixels[i];
-      const g = pixels[i + 1];
-      const b = pixels[i + 2];
-      const rgb = `rgb(${r},${g},${b})`;
-      colorCounts[rgb] = (colorCounts[rgb] || 0) + 1;
-    }
-
-    const sortedColors = Object.entries(colorCounts)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, 4)
-      .map(([color]) => color);
-
-    setExtractedColors(sortedColors);
+    img.onload = () => {
+      const palette = colorThief.getPalette(img, 5);
+      setExtractedColors(palette.map(rgb => ({ rgb, hex: rgbToHex(rgb) })));
+    };
   };
 
   const handleColorSelect = (color) => {
     setSelectedColor(color);
-    findMatchingColors(color);
+    findMatchingColors(color.rgb);
   };
 
-  const findMatchingColors = (selectedColor) => {
-    const rgb = selectedColor.match(/\d+/g).map(Number);
+  const findMatchingColors = (selectedRgb) => {
+    if (!colorData) {
+      console.error('Color data is undefined');
+      return;
+    }
+
     const matchingColors = Object.entries(colorData)
       .map(([name, data]) => {
+        if (!data || !data.CMYK) {
+          console.error(`Invalid color data for ${name}:`, data);
+          return null;
+        }
         const cmyk = data.CMYK;
         const [c, m, y, k] = cmyk;
-        const [r, g, b] = cmykToRgb(c, m, y, k);
-        const distance = calculateColorDistance(rgb, [r, g, b]);
-        return { name, distance };
+        const rgb = cmykToRgb(c, m, y, k);
+        const distance = calculateColorDistance(selectedRgb, rgb);
+        return { name, cmyk, rgb, distance };
       })
+      .filter(color => color !== null)
       .sort((a, b) => a.distance - b.distance)
       .slice(0, 5);
 
     setMatchingColors(matchingColors);
 
     const matchingPalettes = Object.entries(paletteData)
-      .filter(([, palette]) =>
+      .filter(([, palette]) => 
         palette.colors.some(color => matchingColors.some(match => match.name === color))
       )
-      .map(([name, palette]) => ({ name, ...palette }));
+      .map(([name, palette]) => ({ name: palette.name, section: palette.section, colors: palette.colors }));
 
     setMatchingPalettes(matchingPalettes);
   };
 
+  const handleOptionalColorSelect = (color) => {
+    setOptionalColor(color);
+    updateMatchingPalettes(color);
+  };
+
+  const updateMatchingPalettes = (newColor) => {
+    const updatedPalettes = Object.entries(paletteData)
+      .filter(([, palette]) => 
+        palette.colors.some(color => 
+          matchingColors.some(match => match.name === color) || color === newColor.name
+        )
+      )
+      .map(([name, palette]) => ({ name: palette.name, section: palette.section, colors: palette.colors }));
+
+    setMatchingPalettes(updatedPalettes);
+  };
+
   const cmykToRgb = (c, m, y, k) => {
-    const r = 255 * (1 - c / 100) * (1 - k / 100);
-    const g = 255 * (1 - m / 100) * (1 - k / 100);
-    const b = 255 * (1 - y / 100) * (1 - k / 100);
+    c /= 100; m /= 100; y /= 100; k /= 100;
+    const r = 255 * (1 - c) * (1 - k);
+    const g = 255 * (1 - m) * (1 - k);
+    const b = 255 * (1 - y) * (1 - k);
     return [Math.round(r), Math.round(g), Math.round(b)];
+  };
+
+  const rgbToHex = ([r, g, b]) => {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
   };
 
   const calculateColorDistance = (rgb1, rgb2) => {
@@ -141,8 +158,7 @@ const ImageColorExtractor = ({ onColorSelect, colorData, paletteData }) => {
       </div>
       {image && (
         <div className="image-preview">
-          <img src={image.src} alt="Uploaded" className="preview-img" />
-          <canvas ref={canvasRef} className="hidden" />
+          <img src={image} alt="Uploaded" className="preview-img" ref={imageRef} />
         </div>
       )}
       {extractedColors.length > 0 && (
@@ -153,7 +169,7 @@ const ImageColorExtractor = ({ onColorSelect, colorData, paletteData }) => {
               <div
                 key={index}
                 className="color-item"
-                style={{ backgroundColor: color }}
+                style={{ backgroundColor: color.hex }}
                 onClick={() => handleColorSelect(color)}
               />
             ))}
@@ -163,42 +179,79 @@ const ImageColorExtractor = ({ onColorSelect, colorData, paletteData }) => {
       {selectedColor && (
         <div className="selected-color">
           <h3>Selected Color:</h3>
-          <div
-            className="color-preview"
-            style={{ backgroundColor: selectedColor }}
+          <ColorSwatchCard 
+            colorName="Selected Color" 
+            cmyk={rgbToCmyk(...selectedColor.rgb)} 
           />
-          <p>{selectedColor}</p>
         </div>
       )}
       {matchingColors.length > 0 && (
         <div className="matching-colors">
           <h3>Matching Colors:</h3>
-          <ul>
+          <div className="color-swatch-list">
             {matchingColors.map((color, index) => (
-              <li key={index}>
-                <span className="color-name">{color.name}</span>
-                <span className="color-distance">(Distance: {color.distance.toFixed(2)})</span>
-              </li>
+              <ColorSwatchCard 
+                key={index}
+                colorName={color.name} 
+                cmyk={color.cmyk} 
+              />
             ))}
-          </ul>
+          </div>
         </div>
       )}
-
+      <div className="optional-color-section">
+        <h3>Select Optional Color:</h3>
+        <select onChange={(e) => handleOptionalColorSelect({ name: e.target.value })}>
+          <option value="">Select a color</option>
+          {Object.keys(colorData).map((colorName) => (
+            <option key={colorName} value={colorName}>
+              {colorName}
+            </option>
+          ))}
+        </select>
+      </div>
       {matchingPalettes.length > 0 && (
         <div className="matching-palettes">
           <h3>Matching Palettes:</h3>
-          <ul>
+          <div className="palette-list">
             {matchingPalettes.map((palette, index) => (
-              <li key={index}>
-                <span className="palette-name">{palette.name}</span>
-                <span className="palette-section">({palette.section})</span>
-              </li>
+              <div key={index} className="palette-card">
+                <h4>{palette.name} ({palette.section})</h4>
+                <div className="palette-swatches">
+                  {palette.colors.map((colorName, colorIndex) => (
+                    <div
+                      key={colorIndex}
+                      className="palette-swatch"
+                      style={{ backgroundColor: `rgb(${cmykToRgb(...colorData[colorName].CMYK).join(',')})` }}
+                      title={colorName}
+                    />
+                  ))}
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </div>
   );
+};
+
+const rgbToCmyk = (r, g, b) => {
+  let c = 1 - (r / 255);
+  let m = 1 - (g / 255);
+  let y = 1 - (b / 255);
+  let k = Math.min(c, m, y);
+
+  c = (c - k) / (1 - k);
+  m = (m - k) / (1 - k);
+  y = (y - k) / (1 - k);
+
+  return [
+    Math.round(c * 100),
+    Math.round(m * 100),
+    Math.round(y * 100),
+    Math.round(k * 100)
+  ];
 };
 
 export default ImageColorExtractor;

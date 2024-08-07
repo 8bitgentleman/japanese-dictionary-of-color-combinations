@@ -100,6 +100,9 @@ const JapaneseColorApp = () => {
           <div className="main-content">
             <ColorLookup colorData={data.colors} paletteData={data.palettes} />
             <PaletteLookup paletteData={data.palettes} colorData={data.colors} />
+            <AddColorForm onAddColor={handleAddColor} />
+            <AddPaletteForm onAddPalette={handleAddPalette} colors={data.colors} />
+            <DownloadButton data={data} />
           </div>
         );
       case 'grid':
@@ -119,16 +122,7 @@ const JapaneseColorApp = () => {
         <button onClick={() => setActiveTab('grid')} className={activeTab === 'grid' ? 'active' : ''}>Palette Grid</button>
         <button onClick={() => setActiveTab('extractor')} className={activeTab === 'extractor' ? 'active' : ''}>Color Extractor</button>
       </div>
-      {data ? (
-        <>
-          {renderActiveTab()}
-          <AddColorForm onAddColor={handleAddColor} />
-          <AddPaletteForm onAddPalette={handleAddPalette} colors={data.colors} />
-          <DownloadButton data={data} />
-        </>
-      ) : (
-        <p className="placeholder-text">Loading data...</p>
-      )}
+      {data ? renderActiveTab() : <p className="placeholder-text">Loading data...</p>}
     </div>
   );
 };

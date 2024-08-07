@@ -1,0 +1,122 @@
+.image-color-extractor {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .image-color-extractor h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+  }
+  
+  .upload-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .upload-btn, .camera-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+  }
+  
+  .upload-btn:hover, .camera-btn:hover {
+    background-color: var(--hover-color);
+  }
+  
+  .upload-btn:active, .camera-btn:active {
+    transform: scale(0.98);
+  }
+  
+  .image-preview {
+    max-width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .preview-img {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .extracted-colors, .selected-color, .matching-colors, .matching-palettes {
+    margin-bottom: 30px;
+  }
+  
+  .extracted-colors h3, .selected-color h3, .matching-colors h3, .matching-palettes h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+  }
+  
+  .color-list {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .color-item {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .color-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .color-swatch-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .palette-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .palette-card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .palette-card h4 {
+    padding: 10px;
+    margin: 0;
+    background-color: var(--bg-color);
+  }
+  
+  .palette-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100px;
+  }
+  
+  .palette-swatch {
+    flex: 1 0 20%;
+    min-width: 20%;
+    height: 50%;
+  }
+  
+  .hidden {
+    display: none;
+  }
