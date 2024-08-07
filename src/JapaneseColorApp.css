@@ -240,3 +240,184 @@ h4 {
 .remove-color:hover {
   color: #333;
 }
+
+* Image Color Extractor styles */
+.image-color-extractor {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.image-color-extractor h2 {
+  color: var(--accent-color);
+  margin-bottom: 20px;
+  font-size: 1.8em;
+}
+
+.upload-section {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.upload-btn, .camera-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.upload-btn:hover, .camera-btn:hover {
+  background-color: var(--hover-color);
+}
+
+.upload-btn:active, .camera-btn:active {
+  transform: scale(0.98);
+}
+
+.image-preview {
+  max-width: 100%;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.preview-img {
+  max-width: 100%;
+  max-height: 400px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.extracted-colors {
+  margin-bottom: 30px;
+}
+
+.extracted-colors h3, .selected-color h3, .matching-colors h3, .matching-palettes h3 {
+  color: var(--secondary-color);
+  margin-bottom: 15px;
+  font-size: 1.4em;
+}
+
+.color-list {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.color-item {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.color-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.selected-color {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.color-preview {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.selected-color p {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.matching-colors, .matching-palettes {
+  margin-bottom: 30px;
+}
+
+.matching-colors ul, .matching-palettes ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.matching-colors li, .matching-palettes li {
+  background-color: #f0f0f0;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.matching-colors li:hover, .matching-palettes li:hover {
+  background-color: #e0e0e0;
+}
+
+.matching-colors .color-name {
+  font-weight: 500;
+}
+
+.matching-colors .color-distance {
+  color: var(--secondary-color);
+  font-size: 0.9em;
+}
+
+.matching-palettes .palette-name {
+  font-weight: 500;
+}
+
+.matching-palettes .palette-section {
+  color: var(--secondary-color);
+  font-size: 0.9em;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .upload-section {
+    flex-direction: column;
+  }
+
+  .upload-btn, .camera-btn {
+    width: 100%;
+  }
+
+  .selected-color {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .color-preview {
+    margin-bottom: 10px;
+  }
+}
+
+/* Animation for new content */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hidden {
+  display: none;
+}
