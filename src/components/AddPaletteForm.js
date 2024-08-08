@@ -6,7 +6,7 @@ const AddPaletteForm = ({ onAddPalette, colors }) => {
   const [colorInput, setColorInput] = useState('');
   const [paletteColors, setPaletteColors] = useState([]);
   const [sectionInput, setSectionInput] = useState('');
-
+  
   // Extract existing sections from colors object
   const existingSections = useMemo(() => {
     const sections = new Set();
@@ -28,7 +28,35 @@ const AddPaletteForm = ({ onAddPalette, colors }) => {
       setColorInput('');
     }
   };
+  const getColorBackground = (colorName) => {
+    // Convert color name to lowercase for case-insensitive search
+    const searchName = colorName.toLowerCase();
+    
+    // Find the color in the colorData object
+    const colorEntry = Object.entries(colors).find(([name]) => 
+      name.toLowerCase() === searchName
+    );
 
+    if (!colorEntry) {
+      return 'transparent';
+    }
+
+    const [, colorInfo] = colorEntry;
+    const [c, m, y, k] = colorInfo.CMYK;
+
+    // Convert CMYK to RGB
+    const cmykToRgb = (c, m, y, k) => {
+      c /= 100; m /= 100; y /= 100; k /= 100;
+      const r = 255 * (1 - c) * (1 - k);
+      const g = 255 * (1 - m) * (1 - k);
+      const b = 255 * (1 - y) * (1 - k);
+      return [Math.round(r), Math.round(g), Math.round(b)];
+    };
+
+    const [r, g, b] = cmykToRgb(c, m, y, k);
+
+    return `rgb(${r}, ${g}, ${b})`;
+  };
   const handleRemoveColor = (colorToRemove) => {
     setPaletteColors(paletteColors.filter(color => color !== colorToRemove));
   };
@@ -63,14 +91,14 @@ const AddPaletteForm = ({ onAddPalette, colors }) => {
 
   const ColorChip = ({ color }) => (
     <span className="color-chip">
-      <span 
-        className="color-square" 
-        style={{ backgroundColor: color }}
+      <span
+        className="color-square"
+        style={{ backgroundColor: getColorBackground(color) }}
       ></span>
       {color}
-      <button 
-        type="button" 
-        className="remove-color" 
+      <button
+        type="button"
+        className="remove-color"
         onClick={() => handleRemoveColor(color)}
       >
         &times;

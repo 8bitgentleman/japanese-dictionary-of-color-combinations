@@ -32,7 +32,9 @@
         100,
         0
       ],
-      "references": []
+      "references": [
+        "11"
+      ]
     },
     "Ivory Bluff": {
       "CMYK": [
@@ -62,7 +64,8 @@
         0
       ],
       "references": [
-        5
+        5,
+        "20"
       ]
     },
     "Warm Gray": {
@@ -85,7 +88,8 @@
       ],
       "references": [
         "79",
-        "1"
+        "1",
+        "10"
       ]
     },
     "Mineral Gray": {
@@ -95,7 +99,9 @@
         25,
         7
       ],
-      "references": []
+      "references": [
+        "10"
+      ]
     },
     "Pale Burnt Lake": {
       "CMYK": [
@@ -113,7 +119,9 @@
         100,
         4
       ],
-      "references": []
+      "references": [
+        "8"
+      ]
     },
     "Dull Violet Black": {
       "CMYK": [
@@ -122,7 +130,10 @@
         17,
         0
       ],
-      "references": []
+      "references": [
+        "8",
+        "21"
+      ]
     },
     "Blue": {
       "CMYK": [
@@ -141,7 +152,8 @@
         20
       ],
       "references": [
-        "6"
+        "6",
+        "10"
       ]
     },
     "Visoris Lake": {
@@ -160,7 +172,9 @@
         60,
         0
       ],
-      "references": []
+      "references": [
+        "10"
+      ]
     },
     "Pale Purplish Vinaceous": {
       "CMYK": [
@@ -178,7 +192,9 @@
         6,
         0
       ],
-      "references": []
+      "references": [
+        "20"
+      ]
     },
     "Corinthian Pink": {
       "CMYK": [
@@ -196,7 +212,9 @@
         19,
         0
       ],
-      "references": []
+      "references": [
+        "14"
+      ]
     },
     "Pale Cinnamon-Pink": {
       "CMYK": [
@@ -214,7 +232,9 @@
         30,
         0
       ],
-      "references": []
+      "references": [
+        "11"
+      ]
     },
     "Coral Red": {
       "CMYK": [
@@ -232,7 +252,9 @@
         45,
         0
       ],
-      "references": []
+      "references": [
+        "15"
+      ]
     },
     "Grenadine Pink": {
       "CMYK": [
@@ -268,7 +290,10 @@
         21,
         0
       ],
-      "references": []
+      "references": [
+        "11",
+        "21"
+      ]
     },
     "Old Rose": {
       "CMYK": [
@@ -288,7 +313,9 @@
         60,
         0
       ],
-      "references": []
+      "references": [
+        "18"
+      ]
     },
     "Eugenia Red 2": {
       "CMYK": [
@@ -307,7 +334,8 @@
         12
       ],
       "references": [
-        "2"
+        "2",
+        "21"
       ]
     },
     "Vinaceous Tawny": {
@@ -371,7 +399,9 @@
         72,
         7
       ],
-      "references": []
+      "references": [
+        "15"
+      ]
     },
     "Carmine": {
       "CMYK": [
@@ -389,7 +419,9 @@
         35,
         9
       ],
-      "references": []
+      "references": [
+        "11"
+      ]
     },
     "Rosolanc Purple": {
       "CMYK": [
@@ -434,7 +466,9 @@
         80,
         16
       ],
-      "references": []
+      "references": [
+        "14"
+      ]
     },
     "Pompeian Red": {
       "CMYK": [
@@ -452,7 +486,10 @@
         70,
         10
       ],
-      "references": []
+      "references": [
+        "7",
+        "11"
+      ]
     },
     "Brown": {
       "CMYK": [
@@ -506,7 +543,9 @@
         55,
         40
       ],
-      "references": []
+      "references": [
+        "10"
+      ]
     },
     "Sulphur Yellow": {
       "CMYK": [
@@ -515,7 +554,9 @@
         28,
         0
       ],
-      "references": []
+      "references": [
+        "21"
+      ]
     },
     "Sea-foam Yellow": {
       "CMYK": [
@@ -533,7 +574,9 @@
         38,
         0
       ],
-      "references": []
+      "references": [
+        "13"
+      ]
     },
     "Naples Yellow": {
       "CMYK": [
@@ -551,7 +594,9 @@
         23,
         0
       ],
-      "references": []
+      "references": [
+        "14"
+      ]
     },
     "Light Pinkish Cinnamon": {
       "CMYK": [
@@ -569,7 +614,9 @@
         53,
         0
       ],
-      "references": []
+      "references": [
+        "14"
+      ]
     },
     "Cinnamon Bluff": {
       "CMYK": [
@@ -605,7 +652,9 @@
         42,
         0
       ],
-      "references": []
+      "references": [
+        "17"
+      ]
     },
     "Ochacerous Salmon": {
       "CMYK": [
@@ -650,7 +699,9 @@
         100,
         0
       ],
-      "references": []
+      "references": [
+        "20"
+      ]
     },
     "Lemon Yellow": {
       "CMYK": [
@@ -688,7 +739,9 @@
         90,
         0
       ],
-      "references": []
+      "references": [
+        "18"
+      ]
     },
     "Yellow Ocher": {
       "CMYK": [
@@ -697,7 +750,9 @@
         88,
         0
       ],
-      "references": []
+      "references": [
+        "9"
+      ]
     },
     "Orange Yellow": {
       "CMYK": [
@@ -742,7 +797,9 @@
         90,
         0
       ],
-      "references": []
+      "references": [
+        "13"
+      ]
     },
     "English Red": {
       "CMYK": [
@@ -751,7 +808,9 @@
         100,
         0
       ],
-      "references": []
+      "references": [
+        "9"
+      ]
     },
     "Cinnamon Rofous": {
       "CMYK": [
@@ -778,7 +837,10 @@
         100,
         6
       ],
-      "references": []
+      "references": [
+        "9",
+        "12"
+      ]
     },
     "Citron Yellow": {
       "CMYK": [
@@ -796,7 +858,9 @@
         100,
         7
       ],
-      "references": []
+      "references": [
+        "7"
+      ]
     },
     "Dull Citrine": {
       "CMYK": [
@@ -805,7 +869,9 @@
         78,
         0
       ],
-      "references": []
+      "references": [
+        "9"
+      ]
     },
     "Buffy Citrine": {
       "CMYK": [
@@ -814,7 +880,9 @@
         82,
         8
       ],
-      "references": []
+      "references": [
+        "14"
+      ]
     },
     "Dark Citrine": {
       "CMYK": [
@@ -868,7 +936,9 @@
         65,
         19
       ],
-      "references": []
+      "references": [
+        "15"
+      ]
     },
     "Olive Green": {
       "CMYK": [
@@ -886,7 +956,9 @@
         73,
         24
       ],
-      "references": []
+      "references": [
+        "18"
+      ]
     },
     "Deep Grayish Olive": {
       "CMYK": [
@@ -1030,7 +1102,9 @@
         50,
         10
       ],
-      "references": []
+      "references": [
+        "9"
+      ]
     },
     "Rainette Green": {
       "CMYK": [
@@ -1048,7 +1122,9 @@
         58,
         20
       ],
-      "references": []
+      "references": [
+        "18"
+      ]
     },
     "Pistachio Green": {
       "CMYK": [
@@ -1093,7 +1169,9 @@
         73,
         0
       ],
-      "references": []
+      "references": [
+        "13"
+      ]
     },
     "Dull Viridian Green": {
       "CMYK": [
@@ -1129,7 +1207,9 @@
         100,
         10
       ],
-      "references": []
+      "references": [
+        "8"
+      ]
     },
     "Cossack Green": {
       "CMYK": [
@@ -1206,7 +1286,7 @@
     },
     "5": {
       "section": "January",
-      "name":"5",
+      "name": "5",
       "colors": [
         "Black",
         "Spectrum Red",
@@ -1228,15 +1308,175 @@
         "Maple"
       ]
     },
+    "7": {
+      "section": "February",
+      "name": "7",
+      "colors": [
+        "Light Glaucous Blue",
+        "Red",
+        "Venice Green",
+        "white",
+        "Citrine"
+      ]
+    },
+    "8": {
+      "section": "February",
+      "name": "8",
+      "colors": [
+        "Lilac",
+        "Diamine Green",
+        "Sulphine Yellow",
+        "Dull Violet Black",
+        "Kronbergs Green"
+      ]
+    },
+    "9": {
+      "section": "February",
+      "name": "9",
+      "colors": [
+        "Dull Citrine",
+        "Deep Indigo",
+        "English Red",
+        "Khaki",
+        "Andover Green",
+        "Yellow Ocher"
+      ]
+    },
     "10": {
       "section": "February",
       "name": "10",
       "colors": [
         "White",
         "Engenia Red",
-        "Visoris Lake",
+        "Vistoris Lake",
         "Mineral Gray",
         "Maple"
+      ]
+    },
+    "11": {
+      "section": "February",
+      "name": "11",
+      "colors": [
+        "Indian Lake",
+        "Fawn",
+        "Red",
+        "Spinel Red",
+        "Spectrum Red",
+        "Aconite Violet"
+      ]
+    },
+    "12": {
+      "section": "February",
+      "name": "12",
+      "colors": [
+        "Deep Lyons Blue",
+        "Dull Blue Violet",
+        "Ivory Buff",
+        "Khaki",
+        "Neutral Gray"
+      ]
+    },
+    "13": {
+      "section": "March",
+      "name": "13",
+      "colors": [
+        "Deep Indigo",
+        "Green",
+        "Pale Lemon Yellow",
+        "Peach Red",
+        "Nile Blue"
+      ]
+    },
+    "14": {
+      "section": "March",
+      "name": "14",
+      "colors": [
+        "Seashell Pink",
+        "Carmine Red",
+        "Cameo Pink",
+        "Buffy Citrine",
+        "Pinkish Cinnamon",
+        "Nile Blue",
+        "Deep Slate Green"
+      ]
+    },
+    "15": {
+      "section": "March",
+      "name": "15",
+      "colors": [
+        "Scarlet",
+        "Cotinga Purple",
+        "Sudan Brown",
+        "Olive Buff",
+        "Eupatorium Purple",
+        "Fresh Color"
+      ]
+    },
+    "16": {
+      "section": "March",
+      "name": "16",
+      "colors": [
+        "Dark Soft Violet",
+        "Light Glaucous Blue",
+        "Cerulean Blue",
+        "Grayish Lavender",
+        "Helvetia Blue",
+        "Grayish Lavender 2",
+        "Deep Lyons Blue"
+      ]
+    },
+    "17": {
+      "section": "March",
+      "name": "17",
+      "colors": [
+        "Light Glaucous Blue",
+        "Ocher Red",
+        "Dark Medici Blue",
+        "Vinaceous Cinnamon",
+        "Deep Indigo"
+      ]
+    },
+    "18": {
+      "section": "March",
+      "name": "18",
+      "colors": [
+        "Olive Ocher",
+        "Vandar Poel's Blue",
+        "Chromium Green",
+        "Eugenia Red",
+        "Golden yellow",
+        "Light Brownish Olive"
+      ]
+    },
+    "19": {
+      "section": "April",
+      "name": "19",
+      "colors": [
+        "Ivory Buff",
+        "Deep Lyons Blue",
+        "Grayish Lavender 2"
+      ]
+    },
+    "20": {
+      "section": "April",
+      "name": "20",
+      "colors": [
+        "Yellow",
+        "Cobalt Green",
+        "Hermosa Pink",
+        "Calamine Blue",
+        "Turquoise Green"
+      ]
+    },
+    "21": {
+      "section": "April",
+      "name": "21",
+      "colors": [
+        "Helvetia Blue",
+        "Dull Violet Black",
+        "Raw Sienna",
+        "Sulphur Yellow",
+        "Spinel Red"
       ]
     },
     "52": {
