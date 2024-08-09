@@ -100,8 +100,8 @@ const JapaneseColorApp = () => {
           <div className="main-content">
             <ColorLookup colorData={data.colors} paletteData={data.palettes} />
             <PaletteLookup paletteData={data.palettes} colorData={data.colors} />
-            <AddColorForm onAddColor={handleAddColor} />
             <AddPaletteForm onAddPalette={handleAddPalette} colors={data.colors} />
+            <AddColorForm onAddColor={handleAddColor} />
             <DownloadButton data={data} />
           </div>
         );
