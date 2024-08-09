@@ -63,11 +63,7 @@
         42,
         0
       ],
-      "references": [
-        5,
-        "20",
-        "22"
-      ]
+      "references": []
     },
     "Warm Gray": {
       "CMYK": [
@@ -76,9 +72,7 @@
         36,
         3
       ],
-      "references": [
-        5
-      ]
+      "references": []
     },
     "White": {
       "CMYK": [
@@ -100,9 +94,7 @@
         25,
         7
       ],
-      "references": [
-        "10"
-      ]
+      "references": []
     },
     "Pale Burnt Lake": {
       "CMYK": [
@@ -126,15 +118,12 @@
     },
     "Dull Violet Black": {
       "CMYK": [
-        57,
-        60,
-        17,
-        0
+        100,
+        90,
+        38,
+        50
       ],
-      "references": [
-        "8",
-        "21"
-      ]
+      "references": []
     },
     "Blue": {
       "CMYK": [
@@ -274,7 +263,7 @@
         "27"
       ]
     },
-    "Esine Pink": {
+    "Eosine Pink": {
       "CMYK": [
         0,
         63,
@@ -393,7 +382,7 @@
       ],
       "references": []
     },
-    "Ocher red": {
+    "Ocher Red": {
       "CMYK": [
         18,
         73,
@@ -931,7 +920,7 @@
       ],
       "references": []
     },
-    "Kronberts Green": {
+    "Kronbergs Green": {
       "CMYK": [
         48,
         35,
@@ -1045,7 +1034,7 @@
       ],
       "references": []
     },
-    "Turquoise Green ": {
+    "Turquoise Green": {
       "CMYK": [
         29,
         0,
@@ -1286,6 +1275,420 @@
         62
       ],
       "references": []
+    },
+    "Pale King's Blue": {
+      "CMYK": [
+        5,
+        1,
+        9,
+        0
+      ],
+      "references": []
+    },
+    "Nile Blue": {
+      "CMYK": [
+        25,
+        0,
+        10,
+        0
+      ],
+      "references": []
+    },
+    "Pale King's Blue 2": {
+      "CMYK": [
+        33,
+        4,
+        7,
+        0
+      ],
+      "references": []
+    },
+    "Light Glaucous Blue": {
+      "CMYK": [
+        35,
+        10,
+        14,
+        0
+      ],
+      "references": []
+    },
+    "Salvia Blue": {
+      "CMYK": [
+        41,
+        25,
+        10,
+        0
+      ],
+      "references": []
+    },
+    "Calamine Blue": {
+      "CMYK": [
+        50,
+        0,
+        20,
+        0
+      ],
+      "references": []
+    },
+    "Venice Green": {
+      "CMYK": [
+        58,
+        0,
+        30,
+        0
+      ],
+      "references": []
+    },
+    "Pale Methy Blue": {
+      "CMYK": [
+        65,
+        12,
+        30,
+        0
+      ],
+      "references": []
+    },
+    "Peacock Blue": {
+      "CMYK": [
+        100,
+        19,
+        43,
+        0
+      ],
+      "references": []
+    },
+    "Cerulean Blue": {
+      "CMYK": [
+        84,
+        26,
+        32,
+        0
+      ],
+      "references": []
+    },
+    "Green Blue": {
+      "CMYK": [
+        82,
+        24,
+        40,
+        3
+      ],
+      "references": []
+    },
+    "Olympic Blue": {
+      "CMYK": [
+        69,
+        44,
+        10,
+        0
+      ],
+      "references": []
+    },
+    "Antwarp Blue": {
+      "CMYK": [
+        100,
+        40,
+        30,
+        10
+      ],
+      "references": []
+    },
+    "Helvetia Blue": {
+      "CMYK": [
+        100,
+        62,
+        19,
+        10
+      ],
+      "references": []
+    },
+    "Dark Medici Blue": {
+      "CMYK": [
+        70,
+        45,
+        45,
+        45
+      ],
+      "references": []
+    },
+    "Dusky Green": {
+      "CMYK": [
+        100,
+        30,
+        64,
+        50
+      ],
+      "references": []
+    },
+    "Deep Lyons Blue": {
+      "CMYK": [
+        100,
+        85,
+        15,
+        6
+      ],
+      "references": []
+    },
+    "Violet Blue": {
+      "CMYK": [
+        85,
+        79,
+        38,
+        16
+      ],
+      "references": []
+    },
+    "Vandar Poel's Blue": {
+      "CMYK": [
+        100,
+        73,
+        43,
+        10
+      ],
+      "references": []
+    },
+    "Dark Tyrian Blue": {
+      "CMYK": [
+        90,
+        66,
+        36,
+        50
+      ],
+      "references": []
+    },
+    "Deep Indigo": {
+      "CMYK": [
+        100,
+        92,
+        52,
+        60
+      ],
+      "references": []
+    },
+    "Deep Slate Green": {
+      "CMYK": [
+        80,
+        50,
+        60,
+        70
+      ],
+      "references": []
+    },
+    "Grayish Lavender": {
+      "CMYK": [
+        28,
+        28,
+        0,
+        0
+      ],
+      "references": []
+    },
+    "Grayish Lavender 2": {
+      "CMYK": [
+        25,
+        33,
+        20,
+        0
+      ],
+      "references": []
+    },
+    "Laelia Pink": {
+      "CMYK": [
+        20,
+        48,
+        18,
+        0
+      ],
+      "references": []
+    },
+    "Lilac": {
+      "CMYK": [
+        28,
+        54,
+        8,
+        0
+      ],
+      "references": []
+    },
+    "Eupatorium Purple": {
+      "CMYK": [
+        25,
+        79,
+        12,
+        0
+      ],
+      "references": []
+    },
+    "Light Mauve": {
+      "CMYK": [
+        43,
+        62,
+        5,
+        0
+      ],
+      "references": []
+    },
+    "Aconite Violet": {
+      "CMYK": [
+        39,
+        68,
+        5,
+        0
+      ],
+      "references": []
+    },
+    "Dull Blue Violet": {
+      "CMYK": [
+        57,
+        60,
+        17,
+        0
+      ],
+      "references": []
+    },
+    "Dark Soft Violet": {
+      "CMYK": [
+        70,
+        68,
+        13,
+        0
+      ],
+      "references": []
+    },
+    "Blue Violet": {
+      "CMYK": [
+        72,
+        80,
+        0,
+        0
+      ],
+      "references": []
+    },
+    "Violet Ultramarine": {
+      "CMYK": [
+        85,
+        100,
+        0,
+        0
+      ],
+      "references": []
+    },
+    "Purple Drab": {
+      "CMYK": [
+        38,
+        65,
+        49,
+        26
+      ],
+      "references": []
+    },
+    "Deep Violet / Plumbeous": {
+      "CMYK": [
+        61,
+        52,
+        43,
+        7
+      ],
+      "references": []
+    },
+    "Vernonia Purple": {
+      "CMYK": [
+        42,
+        78,
+        46,
+        15
+      ],
+      "references": []
+    },
+    "Dark Slate Purple": {
+      "CMYK": [
+        64,
+        85,
+        60,
+        10
+      ],
+      "references": []
+    },
+    "Taupe Brown": {
+      "CMYK": [
+        30,
+        70,
+        35,
+        40
+      ],
+      "references": []
+    },
+    "Violet Carmine": {
+      "CMYK": [
+        64,
+        90,
+        70,
+        10
+      ],
+      "references": []
+    },
+    "Violet": {
+      "CMYK": [
+        85,
+        90,
+        18,
+        0
+      ],
+      "references": []
+    },
+    "Red Violet": {
+      "CMYK": [
+        76,
+        100,
+        25,
+        15
+      ],
+      "references": []
+    },
+    "Cotinga Purple": {
+      "CMYK": [
+        66,
+        100,
+        42,
+        40
+      ],
+      "references": []
+    },
+    "Dusky Madder Violet": {
+      "CMYK": [
+        75,
+        100,
+        46,
+        30
+      ],
+      "references": []
+    },
+    "Dark Perilla Purple": {
+      "CMYK": [
+        77,
+        95,
+        85,
+        20
+      ],
+      "references": []
+    },
+    "Dull Purplish Black": {
+      "CMYK": [
+        85,
+        85,
+        90,
+        20
+      ],
+      "references": []
+    },
+    "Neutral Gray": {
+      "CMYK": [
+        29,
+        18,
+        20,
+        0
+      ],
+      "references": []
     }
   },
   "palettes": {
@@ -1355,7 +1758,7 @@
         "Light Glaucous Blue",
         "Red",
         "Venice Green",
-        "white",
+        "White",
         "Citrine"
       ]
     },
@@ -1411,7 +1814,7 @@
       "colors": [
         "Deep Lyons Blue",
         "Dull Blue Violet",
-        "Ivory Buff",
+        "Ivory Bluff",
         "Khaki",
         "Neutral Gray"
       ]
@@ -1447,7 +1850,7 @@
         "Scarlet",
         "Cotinga Purple",
         "Sudan Brown",
-        "Olive Buff",
+        "Olive Bluff",
         "Eupatorium Purple",
         "Fresh Color"
       ]
@@ -1484,7 +1887,7 @@
         "Vandar Poel's Blue",
         "Chromium Green",
         "Eugenia Red",
-        "Golden yellow",
+        "Golden Yellow",
         "Light Brownish Olive"
       ]
     },
@@ -1492,7 +1895,7 @@
       "section": "April",
       "name": "19",
       "colors": [
-        "Ivory Buff",
+        "Ivory Bluff",
         "Deep Lyons Blue",
         "Grayish Lavender 2"
       ]
