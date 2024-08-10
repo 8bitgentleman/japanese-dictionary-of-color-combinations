@@ -12,6 +12,7 @@
   from {
     opacity: 0;
   }
+  
   to {
     opacity: 1;
   }
@@ -22,6 +23,7 @@
     transform: translateY(20px);
     opacity: 0;
   }
+  
   to {
     transform: translateY(0);
     opacity: 1;
@@ -45,7 +47,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-weight: 300;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
@@ -65,6 +67,18 @@ h1::after {
   width: 60px;
   height: 4px;
   background-color: var(--accent-color);
+}
+
+h2 {
+  font-size: 1.75em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h4 {
+  font-size: 1.25em;
 }
 
 .card {
@@ -156,9 +170,11 @@ input:focus {
   display: inline-block;
   transition: transform 0.3s ease;
 }
+
 .color-swatch-card {
   transition: transform 0.3s ease;
 }
+
 .color-swatch-card:hover {
   transform: scale(1.01);
 }
@@ -189,11 +205,13 @@ input:focus {
 .color-chip:hover {
   background-color: #e0e0e0;
 }
+
 .color-chip .color-square {
   width: 20px;
   height: 20px;
   margin-bottom: 0 !important;
 }
+
 .flex-container {
   display: flex;
   align-items: center;
@@ -208,25 +226,6 @@ input:focus {
   cursor: pointer;
 }
 
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-}
-
-h2 {
-  font-size: 1.75em;
-  font-weight: bold;
-}
-
-h3 {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-h4 {
-  font-size: 1.25em;
-  font-weight: bold;
-}
 /* Japanese design element */
 .japanese-pattern {
   position: fixed;
@@ -259,7 +258,8 @@ h4 {
   color: #333;
 }
 
-* Image Color Extractor styles */ .image-color-extractor {
+/* Image Color Extractor styles */
+.image-color-extractor {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -450,6 +450,7 @@ h4 {
     opacity: 0;
     transform: translateY(20px);
   }
+  
   to {
     opacity: 1;
     transform: translateY(0);

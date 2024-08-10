@@ -62,12 +62,13 @@
   transition: opacity 0.3s ease;
   pointer-events: none; /* Prevent pointer events on the popover */
 }
-/* components/PaletteGrid.css */
+
 .popover-bottom {
   top: auto;
   bottom: -30px; /* Adjust based on popover height */
   z-index: 9999;
 }
+
 .palette-swatch:hover .popover {
   opacity: 1; /* Show popover on hover */
 }

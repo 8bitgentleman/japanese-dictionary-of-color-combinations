@@ -5,9 +5,10 @@ services:
     restart: unless-stopped
     build: .
     ports:
-      - "5050:5050"
+      - "3000:3000"
+      # - "5050:5050"
     volumes:
-      - ./public:/usr/src/app/public
+      - .:/usr/src/app
     environment:
       - NODE_ENV=production
       - TZ=America/New_York
