@@ -1,28 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import ColorSwatchCard from './ColorSwatchCard';
+import React, { useState, useEffect } from "react";
+import ColorSwatchCard from "./ColorSwatchCard";
 
 const PaletteLookup = ({ paletteData, colorData }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    if (searchTerm === '') {
+    if (searchTerm === "") {
       setSearchResults([]);
       return;
     }
 
     const results = Object.entries(paletteData)
-      .filter(([id, palette]) => 
-        id.toString().includes(searchTerm) || 
-        palette.section.toLowerCase().includes(searchTerm.toLowerCase())
+      .filter(
+        ([id, palette]) =>
+          id.toString().includes(searchTerm) ||
+          palette.section.toLowerCase().includes(searchTerm.toLowerCase()),
       )
       .map(([id, palette]) => ({
         id,
         ...palette,
-        colors: palette.colors.map(colorName => {
-          const colorInfo = Object.entries(colorData).find(([key]) => key.toLowerCase() === colorName.toLowerCase());
-          return colorInfo ? { name: colorInfo[0], ...colorInfo[1] } : { name: colorName, error: 'Color not found' };
-        })
+        colors: palette.colors.map((colorName) => {
+          const colorInfo = Object.entries(colorData).find(
+            ([key]) => key.toLowerCase() === colorName.toLowerCase(),
+          );
+          return colorInfo
+            ? { name: colorInfo[0], ...colorInfo[1] }
+            : { name: colorName, error: "Color not found" };
+        }),
       }));
     setSearchResults(results);
   }, [searchTerm, paletteData, colorData]);
@@ -45,7 +50,9 @@ const PaletteLookup = ({ paletteData, colorData }) => {
       )}
       {searchResults.map((paletteInfo, paletteIndex) => (
         <div key={paletteIndex} className="palette-result">
-          <h3>Palette {paletteInfo.id}: {paletteInfo.section}</h3>
+          <h3>
+            Palette {paletteInfo.id}: {paletteInfo.section}
+          </h3>
           <div className="color-grid">
             {paletteInfo.colors.map((colorInfo, colorIndex) => (
               <ColorSwatchCard

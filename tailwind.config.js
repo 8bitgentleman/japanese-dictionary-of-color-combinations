@@ -8,7 +8,5 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
-}
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+};

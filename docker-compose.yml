@@ -1,0 +1,22 @@
+version: "3"
+services:
+  japanese_color_app:
+    container_name: japanese_color_app
+    restart: unless-stopped
+    build: .
+    ports:
+      - "5050:5050"
+    volumes:
+      - ./public:/usr/src/app/public
+    environment:
+      - NODE_ENV=production
+      - TZ=America/New_York
+#     labels:
+#       - 'traefik.http.routers.japanese_color_app.rule=Host(`your-domain.com`)'
+#       - traefik.http.routers.japanese_color_app.entrypoints=websecure
+#       - 'traefik.http.routers.japanese_color_app.tls.certresolver=mydnschallenge'
+
+# networks:
+#   default:
+#     external:
+#       name: traefik

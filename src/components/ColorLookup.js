@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import ColorSwatchCard from './ColorSwatchCard';
+import React, { useState, useEffect } from "react";
+import ColorSwatchCard from "./ColorSwatchCard";
 
 const ColorLookup = ({ colorData, paletteData }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    if (searchTerm === '') {
+    if (searchTerm === "") {
       setSearchResults([]);
       return;
     }
-    
+
     const results = Object.entries(colorData)
-      .filter(([colorName]) => colorName.toLowerCase().includes(searchTerm.toLowerCase()))
+      .filter(([colorName]) =>
+        colorName.toLowerCase().includes(searchTerm.toLowerCase()),
+      )
       .map(([colorName, info]) => ({
         name: colorName,
         ...info,
-        palettes: info.references.map(ref => {
+        palettes: info.references.map((ref) => {
           const palette = paletteData[ref];
           return palette ? `${ref} (${palette.section})` : ref;
-        })
+        }),
       }));
     setSearchResults(results);
   }, [searchTerm, colorData, paletteData]);
@@ -43,11 +45,10 @@ const ColorLookup = ({ colorData, paletteData }) => {
       <div className="color-grid">
         {searchResults.map((colorInfo, index) => (
           <div key={index} className="color-result">
-            <ColorSwatchCard
-              colorName={colorInfo.name}
-              cmyk={colorInfo.CMYK}
-            />
-            <p className="palettes">Palettes: {colorInfo.palettes.join(', ')}</p>
+            <ColorSwatchCard colorName={colorInfo.name} cmyk={colorInfo.CMYK} />
+            <p className="palettes">
+              Palettes: {colorInfo.palettes.join(", ")}
+            </p>
           </div>
         ))}
       </div>

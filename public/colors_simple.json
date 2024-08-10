@@ -1,29 +1,12 @@
 {
   "colors": {
     "Black": {
-      "CMYK": [
-        20,
-        10,
-        15,
-        100
-      ],
-      "references": [
-        5,
-        64
-      ]
+      "CMYK": [20, 10, 15, 100],
+      "references": [5, 64]
     },
     "Slate Color": {
-      "CMYK": [
-        85,
-        70,
-        62,
-        30
-      ],
-      "references": [
-        5,
-        63,
-        71
-      ]
+      "CMYK": [85, 70, 62, 30],
+      "references": [5, 63, 71]
     }
   },
   "palettes": {

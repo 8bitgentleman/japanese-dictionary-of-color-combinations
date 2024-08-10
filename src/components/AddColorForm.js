@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const AddColorForm = ({ onAddColor }) => {
-  const [colorName, setColorName] = useState('');
+  const [colorName, setColorName] = useState("");
   const [cmyk, setCmyk] = useState({ c: 0, m: 0, y: 0, k: 0 });
 
   const handleSubmit = (e) => {
@@ -9,11 +9,11 @@ const AddColorForm = ({ onAddColor }) => {
     const newColor = {
       name: colorName,
       CMYK: [cmyk.c, cmyk.m, cmyk.y, cmyk.k],
-      references: [] // This will be computed when adding to palettes
+      references: [], // This will be computed when adding to palettes
     };
     onAddColor(newColor);
     // Reset form
-    setColorName('');
+    setColorName("");
     setCmyk({ c: 0, m: 0, y: 0, k: 0 });
   };
 
@@ -28,12 +28,14 @@ const AddColorForm = ({ onAddColor }) => {
           placeholder="Color Name"
           required
         />
-        {['c', 'm', 'y', 'k'].map((channel) => (
+        {["c", "m", "y", "k"].map((channel) => (
           <input
             key={channel}
             type="number"
             value={cmyk[channel]}
-            onChange={(e) => setCmyk({ ...cmyk, [channel]: Number(e.target.value) })}
+            onChange={(e) =>
+              setCmyk({ ...cmyk, [channel]: Number(e.target.value) })
+            }
             placeholder={channel.toUpperCase()}
             min="0"
             max="100"

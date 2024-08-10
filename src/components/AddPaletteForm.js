@@ -1,19 +1,19 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo } from "react";
 
 const AddPaletteForm = ({ onAddPalette, colors }) => {
-  const [section, setSection] = useState('');
-  const [name, setName] = useState('');
-  const [colorInput, setColorInput] = useState('');
+  const [section, setSection] = useState("");
+  const [name, setName] = useState("");
+  const [colorInput, setColorInput] = useState("");
   const [paletteColors, setPaletteColors] = useState([]);
-  const [sectionInput, setSectionInput] = useState('');
-  
+  const [sectionInput, setSectionInput] = useState("");
+
   // Extract existing sections from colors object
   const existingSections = useMemo(() => {
     const sections = new Set();
-    Object.values(colors).forEach(color => {
+    Object.values(colors).forEach((color) => {
       if (color.references) {
-        color.references.forEach(ref => {
-          if (typeof ref === 'string' && ref.trim() !== '') {
+        color.references.forEach((ref) => {
+          if (typeof ref === "string" && ref.trim() !== "") {
             sections.add(ref.trim());
           }
         });
@@ -23,22 +23,25 @@ const AddPaletteForm = ({ onAddPalette, colors }) => {
   }, [colors]);
 
   const handleAddColorToPalette = () => {
-    if (colorInput.trim() !== '' && !paletteColors.includes(colorInput.trim())) {
+    if (
+      colorInput.trim() !== "" &&
+      !paletteColors.includes(colorInput.trim())
+    ) {
       setPaletteColors([...paletteColors, colorInput.trim()]);
-      setColorInput('');
+      setColorInput("");
     }
   };
   const getColorBackground = (colorName) => {
     // Convert color name to lowercase for case-insensitive search
     const searchName = colorName.toLowerCase();
-    
+
     // Find the color in the colorData object
-    const colorEntry = Object.entries(colors).find(([name]) => 
-      name.toLowerCase() === searchName
+    const colorEntry = Object.entries(colors).find(
+      ([name]) => name.toLowerCase() === searchName,
     );
 
     if (!colorEntry) {
-      return 'transparent';
+      return "transparent";
     }
 
     const [, colorInfo] = colorEntry;
@@ -46,7 +49,10 @@ const AddPaletteForm = ({ onAddPalette, colors }) => {
 
     // Convert CMYK to RGB
     const cmykToRgb = (c, m, y, k) => {
-      c /= 100; m /= 100; y /= 100; k /= 100;
+      c /= 100;
+      m /= 100;
+      y /= 100;
+      k /= 100;
       const r = 255 * (1 - c) * (1 - k);
       const g = 255 * (1 - m) * (1 - k);
       const b = 255 * (1 - y) * (1 - k);
@@ -58,17 +64,25 @@ const AddPaletteForm = ({ onAddPalette, colors }) => {
     return `rgb(${r}, ${g}, ${b})`;
   };
   const handleRemoveColor = (colorToRemove) => {
-    setPaletteColors(paletteColors.filter(color => color !== colorToRemove));
+    setPaletteColors(paletteColors.filter((color) => color !== colorToRemove));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (section.trim() === '' || name.trim() === '' || paletteColors.length === 0) {
+    if (
+      section.trim() === "" ||
+      name.trim() === "" ||
+      paletteColors.length === 0
+    ) {
       return;
     }
-    onAddPalette({ section: section.trim(), name: name.trim(), colors: paletteColors });
-    setSection('');
-    setName('');
+    onAddPalette({
+      section: section.trim(),
+      name: name.trim(),
+      colors: paletteColors,
+    });
+    setSection("");
+    setName("");
     setPaletteColors([]);
   };
 
@@ -81,12 +95,12 @@ const AddPaletteForm = ({ onAddPalette, colors }) => {
     setSection(e.target.value);
   };
 
-  const filteredColors = Object.keys(colors).filter(colorName =>
-    colorName.toLowerCase().includes(colorInput.toLowerCase())
+  const filteredColors = Object.keys(colors).filter((colorName) =>
+    colorName.toLowerCase().includes(colorInput.toLowerCase()),
   );
 
-  const filteredSections = existingSections.filter(sectionName =>
-    sectionName.toLowerCase().includes(sectionInput.toLowerCase())
+  const filteredSections = existingSections.filter((sectionName) =>
+    sectionName.toLowerCase().includes(sectionInput.toLowerCase()),
   );
 
   const ColorChip = ({ color }) => (

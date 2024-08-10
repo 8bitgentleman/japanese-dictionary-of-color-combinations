@@ -1,5 +1,5 @@
-import React from 'react';
-import JapaneseColorApp from './JapaneseColorApp';
+import React from "react";
+import JapaneseColorApp from "./JapaneseColorApp";
 
 function App() {
   return (

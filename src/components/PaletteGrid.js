@@ -1,18 +1,18 @@
 // components/PaletteGrid.js
-import React, { useState, useRef } from 'react';
-import './PaletteGrid.css';
+import React, { useState, useRef } from "react";
+import "./PaletteGrid.css";
 
 const PaletteGrid = ({ paletteData, colorData }) => {
   const [hoveredColor, setHoveredColor] = useState(null);
   const [hoverTimer, setHoverTimer] = useState(null);
-  const [popoverPosition, setPopoverPosition] = useState('top');
+  const [popoverPosition, setPopoverPosition] = useState("top");
   const containerRef = useRef(null);
 
   const getColorStyle = (colorName) => {
     const color = colorData[colorName];
     if (!color) {
       console.warn(`Color data missing for: ${colorName}`);
-      return { backgroundColor: '#CCCCCC' }; // Fallback color
+      return { backgroundColor: "#CCCCCC" }; // Fallback color
     }
 
     if (color.CMYK) {
@@ -21,11 +21,13 @@ const PaletteGrid = ({ paletteData, colorData }) => {
       const r = 255 * (1 - c / 100) * (1 - k / 100);
       const g = 255 * (1 - m / 100) * (1 - k / 100);
       const b = 255 * (1 - y / 100) * (1 - k / 100);
-      return { backgroundColor: `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})` };
+      return {
+        backgroundColor: `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`,
+      };
     }
 
     if (color.RGB) {
-      return { backgroundColor: `rgb(${color.RGB.join(',')})` };
+      return { backgroundColor: `rgb(${color.RGB.join(",")})` };
     }
 
     if (color.hex) {
@@ -33,7 +35,7 @@ const PaletteGrid = ({ paletteData, colorData }) => {
     }
 
     console.warn(`No valid color format found for: ${colorName}`);
-    return { backgroundColor: '#CCCCCC' }; // Fallback color
+    return { backgroundColor: "#CCCCCC" }; // Fallback color
   };
 
   const handleMouseEnter = (colorName, event) => {
@@ -41,11 +43,13 @@ const PaletteGrid = ({ paletteData, colorData }) => {
     const containerRect = containerRef.current.getBoundingClientRect();
     const shouldShowBelow = swatchRect.top - containerRect.top < 40; // Adjust based on popover height
 
-    setPopoverPosition(shouldShowBelow ? 'bottom' : 'top');
+    setPopoverPosition(shouldShowBelow ? "bottom" : "top");
 
-    setHoverTimer(setTimeout(() => {
-      setHoveredColor(colorName);
-    }, 400));
+    setHoverTimer(
+      setTimeout(() => {
+        setHoveredColor(colorName);
+      }, 400),
+    );
   };
 
   const handleMouseLeave = () => {
@@ -67,7 +71,9 @@ const PaletteGrid = ({ paletteData, colorData }) => {
                 onMouseLeave={handleMouseLeave}
               >
                 {hoveredColor === colorName && (
-                  <div className={`popover ${popoverPosition === 'bottom' ? 'popover-bottom' : ''}`}>
+                  <div
+                    className={`popover ${popoverPosition === "bottom" ? "popover-bottom" : ""}`}
+                  >
                     {colorName}
                   </div>
                 )}
