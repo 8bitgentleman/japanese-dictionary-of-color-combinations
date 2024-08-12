@@ -11,6 +11,7 @@ import ImageColorExtractor from "./components/ImageColorExtractor";
 const JapaneseColorApp = () => {
   const [data, setData] = useState(null);
   const [activeTab, setActiveTab] = useState("main");
+  const isBrowseOnly = process.env.REACT_APP_BROWSE_ONLY === "true";
 
   const apiUrl =
     process.env.NODE_ENV === "production"
@@ -18,9 +19,23 @@ const JapaneseColorApp = () => {
       : "http://localhost:5050/api/update-colors";
 
   useEffect(() => {
-    fetch("/colors.json")
-      .then((response) => response.json())
-      .then((jsonData) => setData(jsonData))
+    const baseUrl =
+      process.env.NODE_ENV === "production"
+        ? "/japanese-dictionary-of-color-combinations"
+        : "http://localhost:3000/japanese-dictionary-of-color-combinations";
+
+    fetch(`${baseUrl}/colors.json`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        return response.text(); // Temporarily use text to log the response
+      })
+      .then((textData) => {
+        const jsonData = JSON.parse(textData);
+        setData(jsonData);
+      })
       .catch((error) => console.error("Error loading colors.json:", error));
   }, []);
 
@@ -111,11 +126,15 @@ const JapaneseColorApp = () => {
               paletteData={data.palettes}
               colorData={data.colors}
             />
-            <AddPaletteForm
-              onAddPalette={handleAddPalette}
-              colors={data.colors}
-            />
-            <AddColorForm onAddColor={handleAddColor} />
+            {!isBrowseOnly && (
+              <>
+                <AddPaletteForm
+                  onAddPalette={handleAddPalette}
+                  colors={data.colors}
+                />
+                <AddColorForm onAddColor={handleAddColor} />
+              </>
+            )}
             <DownloadButton data={data} />
           </div>
         );

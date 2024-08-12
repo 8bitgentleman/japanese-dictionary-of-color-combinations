@@ -11,14 +11,26 @@ const ImageColorExtractor = ({ colorData, paletteData }) => {
   const [matchingColors, setMatchingColors] = useState([]);
   const [matchingPalettes, setMatchingPalettes] = useState([]);
   const [optionalColor, setOptionalColor] = useState(null);
+  const [isCameraOn, setIsCameraOn] = useState(false);
   const fileInputRef = useRef(null);
   const imageRef = useRef(null);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     if (image) {
       extractColors(image);
     }
   }, [image]);
+
+  useEffect(() => {
+    return () => {
+      if (videoRef.current && videoRef.current.srcObject) {
+        const stream = videoRef.current.srcObject;
+        const tracks = stream.getTracks();
+        tracks.forEach(track => track.stop());
+      }
+    };
+  }, []);
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -32,10 +44,22 @@ const ImageColorExtractor = ({ colorData, paletteData }) => {
   const handleCameraCapture = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      const video = document.createElement("video");
-      video.srcObject = stream;
-      await video.play();
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        videoRef.current.style.display = "block";
+        await videoRef.current.play();
+        setIsCameraOn(true);
+      } else {
+        console.error("Video element is not available.");
+      }
+    } catch (error) {
+      console.error("Error accessing camera:", error);
+    }
+  };
 
+  const captureImageFromVideo = () => {
+    if (videoRef.current) {
+      const video = videoRef.current;
       const canvas = document.createElement("canvas");
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
@@ -44,9 +68,13 @@ const ImageColorExtractor = ({ colorData, paletteData }) => {
       const capturedImage = canvas.toDataURL("image/jpeg");
       setImage(capturedImage);
 
-      stream.getTracks().forEach((track) => track.stop());
-    } catch (error) {
-      console.error("Error accessing camera:", error);
+      const stream = video.srcObject;
+      const tracks = stream.getTracks();
+      tracks.forEach((track) => track.stop());
+      videoRef.current.style.display = "none";
+      setIsCameraOn(false);
+    } else {
+      console.error("Video element is not available for capturing image.");
     }
   };
 
@@ -150,8 +178,8 @@ const ImageColorExtractor = ({ colorData, paletteData }) => {
   const calculateColorDistance = (rgb1, rgb2) => {
     return Math.sqrt(
       Math.pow(rgb1[0] - rgb2[0], 2) +
-        Math.pow(rgb1[1] - rgb2[1], 2) +
-        Math.pow(rgb1[2] - rgb2[2], 2),
+      Math.pow(rgb1[1] - rgb2[1], 2) +
+      Math.pow(rgb1[2] - rgb2[2], 2),
     );
   };
 
@@ -159,23 +187,35 @@ const ImageColorExtractor = ({ colorData, paletteData }) => {
     <div className="image-color-extractor">
       <h2>Match Image To Palette</h2>
       <div className="upload-section">
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-          ref={fileInputRef}
-          className="hidden"
-        />
-        <button
-          onClick={() => fileInputRef.current.click()}
-          className="upload-btn"
-        >
-          Upload Image
-        </button>
-        <button onClick={handleCameraCapture} className="camera-btn">
-          <Camera size={24} />
-          Take Picture
-        </button>
+        <div className="video-container">
+          <video ref={videoRef} className="video-preview" style={{ display: "none" }} />
+          <div className="button-row">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              ref={fileInputRef}
+              className="hidden"
+            />
+            <button
+              onClick={() => fileInputRef.current.click()}
+              className="upload-btn"
+            >
+              Upload Image
+            </button>
+            {!isCameraOn && (
+              <button onClick={handleCameraCapture} className="camera-btn">
+                <Camera size={24} />
+                Take Picture
+              </button>
+            )}
+            {isCameraOn && (
+              <button onClick={captureImageFromVideo} className="capture-btn">
+                Capture Image
+              </button>
+            )}
+          </div>
+        </div>
       </div>
       {image && (
         <div className="image-preview">
