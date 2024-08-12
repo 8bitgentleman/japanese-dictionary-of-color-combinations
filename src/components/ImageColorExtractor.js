@@ -157,7 +157,7 @@ const ImageColorExtractor = ({ colorData, paletteData }) => {
 
   return (
     <div className="image-color-extractor">
-      <h2>Image Color Extractor</h2>
+      <h2>Match Image To Palette</h2>
       <div className="upload-section">
         <input
           type="file"
@@ -174,7 +174,7 @@ const ImageColorExtractor = ({ colorData, paletteData }) => {
         </button>
         <button onClick={handleCameraCapture} className="camera-btn">
           <Camera size={24} />
-          Capture Image
+          Take Picture
         </button>
       </div>
       {image && (
@@ -213,7 +213,7 @@ const ImageColorExtractor = ({ colorData, paletteData }) => {
       )}
       {matchingColors.length > 0 && (
         <div className="matching-colors">
-          <h3>Matching Colors:</h3>
+          <h3>Closest Matching Colors:</h3>
           <div className="color-swatch-list">
             {matchingColors.map((color, index) => (
               <ColorSwatchCard
@@ -226,7 +226,7 @@ const ImageColorExtractor = ({ colorData, paletteData }) => {
         </div>
       )}
       <div className="optional-color-section">
-        <h3>Select Optional Color:</h3>
+        <h3>Select Complimentary Color:</h3>
         <select
           onChange={(e) => handleOptionalColorSelect({ name: e.target.value })}
         >
