@@ -1,13 +1,7 @@
-// components/PaletteGrid.js
-import React, { useState, useRef } from "react";
+import React from "react";
 import "./PaletteGrid.css";
 
-const PaletteGrid = ({ paletteData, colorData }) => {
-  const [hoveredColor, setHoveredColor] = useState(null);
-  const [hoverTimer, setHoverTimer] = useState(null);
-  const [popoverPosition, setPopoverPosition] = useState("top");
-  const containerRef = useRef(null);
-
+const PaletteGrid = ({ paletteData, colorData, onPaletteClick }) => {
   const getColorStyle = (colorName) => {
     const color = colorData[colorName];
     if (!color) {
@@ -38,45 +32,28 @@ const PaletteGrid = ({ paletteData, colorData }) => {
     return { backgroundColor: "#CCCCCC" }; // Fallback color
   };
 
-  const handleMouseEnter = (colorName, event) => {
-    const swatchRect = event.target.getBoundingClientRect();
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const shouldShowBelow = swatchRect.top - containerRect.top < 40; // Adjust based on popover height
-
-    setPopoverPosition(shouldShowBelow ? "bottom" : "top");
-
-    setHoverTimer(
-      setTimeout(() => {
-        setHoveredColor(colorName);
-      }, 400),
-    );
-  };
-
-  const handleMouseLeave = () => {
-    clearTimeout(hoverTimer);
-    setHoveredColor(null);
+  const handlePaletteClick = (paletteName) => {
+    if (onPaletteClick) {
+      onPaletteClick(paletteName);
+    }
   };
 
   return (
-    <div className="palette-grid" ref={containerRef}>
+    <div className="palette-grid">
       {Object.entries(paletteData).map(([paletteName, palette]) => (
-        <div key={paletteName} className="palette-card">
+        <div 
+          key={paletteName} 
+          className="palette-card"
+          onClick={() => handlePaletteClick(paletteName)}
+        >
           <div className="palette-swatches">
             {palette.colors.map((colorName) => (
               <div
                 key={colorName}
                 className="palette-swatch"
                 style={getColorStyle(colorName)}
-                onMouseEnter={(e) => handleMouseEnter(colorName, e)}
-                onMouseLeave={handleMouseLeave}
               >
-                {hoveredColor === colorName && (
-                  <div
-                    className={`popover ${popoverPosition === "bottom" ? "popover-bottom" : ""}`}
-                  >
-                    {colorName}
-                  </div>
-                )}
+                <div className="color-name">{colorName}</div>
               </div>
             ))}
           </div>

@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ColorSwatchCard from "./ColorSwatchCard";
 
-const PaletteLookup = ({ paletteData, colorData }) => {
+const PaletteLookup = ({ paletteData, colorData, selectedPalette }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    if (selectedPalette) {
+      setSearchTerm(selectedPalette);
+    }
+  }, [selectedPalette]);
 
   useEffect(() => {
     if (searchTerm === "") {

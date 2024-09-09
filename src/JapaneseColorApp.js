@@ -11,6 +11,7 @@ import ImageColorExtractor from "./components/ImageColorExtractor";
 const JapaneseColorApp = () => {
   const [data, setData] = useState(null);
   const [activeTab, setActiveTab] = useState("main");
+  const [selectedPalette, setSelectedPalette] = useState(null);
   const isBrowseOnly = process.env.REACT_APP_BROWSE_ONLY === "true";
 
   const apiUrl =
@@ -114,6 +115,11 @@ const JapaneseColorApp = () => {
     }
   };
 
+  const handlePaletteClick = (paletteName) => {
+    setSelectedPalette(paletteName);
+    setActiveTab("main");
+  };
+
   const renderActiveTab = () => {
     if (!data) return null;
 
@@ -125,6 +131,7 @@ const JapaneseColorApp = () => {
             <PaletteLookup
               paletteData={data.palettes}
               colorData={data.colors}
+              selectedPalette={selectedPalette}
             />
             {!isBrowseOnly && (
               <>
@@ -140,7 +147,11 @@ const JapaneseColorApp = () => {
         );
       case "grid":
         return (
-          <PaletteGrid paletteData={data.palettes} colorData={data.colors} />
+          <PaletteGrid
+            paletteData={data.palettes}
+            colorData={data.colors}
+            onPaletteClick={handlePaletteClick}
+          />
         );
       case "extractor":
         return (
