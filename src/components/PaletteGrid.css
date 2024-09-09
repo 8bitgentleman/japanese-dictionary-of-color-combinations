@@ -1,8 +1,23 @@
+.palette-grid-container {
+  padding: 20px;
+}
+
+.favorites-section,
+.all-palettes-section {
+  margin-bottom: 40px;
+}
+
+.favorites-section h2,
+.all-palettes-section h2 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  color: #333;
+}
+
 .palette-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
-  padding: 20px;
 }
 
 .palette-card {
@@ -17,6 +32,10 @@
 .palette-card:hover {
   transform: scale(1.05);
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.palette-card.favorite {
+  border: 2px solid gold;
 }
 
 .palette-swatches {
@@ -69,5 +88,32 @@
 }
 
 .palette-card:hover .palette-name {
+  opacity: 1;
+}
+
+.favorite-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.palette-card:hover .favorite-button,
+.favorite-button.is-favorite {
+  opacity: 1;
+}
+
+.favorite-button:hover {
+  transform: scale(1.1);
+  background-color: transparent;
+}
+
+.favorite-button.is-favorite {
   opacity: 1;
 }
