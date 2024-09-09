@@ -20,7 +20,7 @@ const calculateBrightness = (cmyk) => {
   return 1 - Math.max(c, m, y, k) / 100;
 };
 
-const ColorGrid = ({ colorData }) => {
+const ColorGrid = ({ colorData, onSectionClick }) => {
   const [hoveredColor, setHoveredColor] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [sortOption, setSortOption] = useState('section');
@@ -73,6 +73,11 @@ const ColorGrid = ({ colorData }) => {
     </button>
   );
 
+  const handleSectionClick = (section, event) => {
+    event.stopPropagation();
+    onSectionClick(section);
+  };
+
   return (
     <div className="color-grid-container">
       <div className="color-grid-controls">
@@ -104,7 +109,6 @@ const ColorGrid = ({ colorData }) => {
             onMouseLeave={() => setHoveredColor(null)}
             onClick={() => handleColorClick(colorName)}
           >
-           
             {selectedColor === colorName && (
               <div className="color-details" onClick={(e) => e.stopPropagation()}>
                 <h3>{colorName}</h3>
@@ -118,7 +122,17 @@ const ColorGrid = ({ colorData }) => {
                 </p>
                 {colorInfo.references && (
                   <p>
-                    Used in sections: {colorInfo.references.join(', ')}
+                    Used in palette(s): {colorInfo.references.map((section, index) => (
+                      <span key={index}>
+                        {index > 0 && ', '}
+                        <span 
+                          className="section-link" 
+                          onClick={(e) => handleSectionClick(section, e)}
+                        >
+                          {section}
+                        </span>
+                      </span>
+                    ))}
                   </p>
                 )}
               </div>
