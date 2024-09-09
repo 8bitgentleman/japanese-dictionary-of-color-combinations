@@ -1,24 +1,36 @@
+:root {
+  --background-color: white;
+  --error-background: #ffeeee;
+  --error-text: #ff0000;
+  --border-color: #e0e0e0;
+  --hover-background: #f0f0f0;
+  --copied-background: #d4edda;
+  --text-color: #333333;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
 .color-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
+  gap: 1.5rem;
   margin-top: 1rem;
 }
 
 .color-swatch-card {
-  background-color: white;
+  background-color: var(--background-color);
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px var(--shadow-color);
   padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Noto Sans", sans-serif; /* Japanese minimalism font */
+  font-family: "Noto Sans", sans-serif;
+  width: 100%;
 }
 
 .color-swatch-card.error {
-  background-color: #ffeeee;
-  color: #ff0000;
+  background-color: var(--error-background);
+  color: var(--error-text);
 }
 
 .color-square {
@@ -26,53 +38,60 @@
   height: 80px;
   border-radius: 8px;
   margin-bottom: 0.5rem;
-  border: 1px solid #e0e0e0; /* Subtle border for minimalism */
+  border: 1px solid var(--border-color);
 }
 
 .color-swatch-card h3 {
   margin: 0.5rem 0;
   text-align: center;
-  font-size: 1rem; /* Smaller font size for minimalism */
+  font-size: 1rem;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 .color-values {
-  font-size: 0.9rem;
-  text-align: center;
+  font-size: 0.8rem;
   width: 100%;
-  position: relative;
 }
 
-.color-values p {
+.color-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.25rem 0;
   margin: 0.25rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  white-space: nowrap; /* Prevent wrapping */
-}
-
-.copy-button {
-  background-color: #f0f0f0;
+  background-color: transparent;
   border: none;
-  border-radius: 4px;
-  padding: 0.2rem 0.5rem;
   cursor: pointer;
-  display: none;
-  align-items: center;
-  gap: 0.3rem;
   transition: background-color 0.3s;
-  margin-left: 0.5rem;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.8rem;
+  color: var(--text-color);
 }
 
-.copy-button:hover {
-  background-color: #e0e0e0;
+.color-value:hover {
+  background-color: var(--hover-background);
 }
 
-.copy-icon {
-  width: 16px;
-  height: 16px;
+.color-value.copied {
+  background-color: var(--copied-background);
 }
 
-.color-values p:hover .copy-button {
-  display: flex;
+.color-value-label {
+  /* font-weight: bold; */
+  margin-right: 0.5rem;
+}
+
+.color-value-text {
+  /* word-break: break-all; */
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .color-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
 }

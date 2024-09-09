@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Clipboard, Check } from "lucide-react";
 import "./ColorSwatchCard.css";
 
 const cmykToRgb = (c, m, y, k) => {
@@ -21,7 +20,6 @@ const rgbToHex = (r, g, b) => {
 };
 
 const ColorSwatchCard = ({ colorName, cmyk, error }) => {
-  const [copied, setCopied] = useState(false);
   const [copiedValue, setCopiedValue] = useState("");
 
   if (error) {
@@ -36,15 +34,24 @@ const ColorSwatchCard = ({ colorName, cmyk, error }) => {
   const rgb = cmykToRgb(...cmyk);
   const hex = rgbToHex(...rgb);
 
-  const handleCopy = (text) => {
+  const handleCopy = (text, label) => {
     navigator.clipboard.writeText(text);
-    setCopied(true);
-    setCopiedValue(text);
+    setCopiedValue(label);
     setTimeout(() => {
-      setCopied(false);
       setCopiedValue("");
     }, 2000);
   };
+
+  const ColorValue = ({ label, value }) => (
+    <button 
+      className={`color-value ${copiedValue === label ? 'copied' : ''}`}
+      onClick={() => handleCopy(value, label)}
+      title={`Click to copy ${label}`}
+    >
+      <span className="color-value-label">{label}:</span>
+      <span className="color-value-text">{value}</span>
+    </button>
+  );
 
   return (
     <div className="color-swatch-card">
@@ -54,42 +61,9 @@ const ColorSwatchCard = ({ colorName, cmyk, error }) => {
       />
       <h3>{colorName}</h3>
       <div className="color-values">
-        <p>
-          HEX: {hex}
-          <button className="copy-button" onClick={() => handleCopy(hex)}>
-            {copied && copiedValue === hex ? (
-              <Check size={16} className="copy-icon" />
-            ) : (
-              <Clipboard size={16} className="copy-icon" />
-            )}
-          </button>
-        </p>
-        <p>
-          CMYK: {cmyk.join(", ")}
-          <button
-            className="copy-button"
-            onClick={() => handleCopy(cmyk.join(", "))}
-          >
-            {copied && copiedValue === cmyk.join(", ") ? (
-              <Check size={16} className="copy-icon" />
-            ) : (
-              <Clipboard size={16} className="copy-icon" />
-            )}
-          </button>
-        </p>
-        <p>
-          RGB: {rgb.join(", ")}
-          <button
-            className="copy-button"
-            onClick={() => handleCopy(rgb.join(", "))}
-          >
-            {copied && copiedValue === rgb.join(", ") ? (
-              <Check size={16} className="copy-icon" />
-            ) : (
-              <Clipboard size={16} className="copy-icon" />
-            )}
-          </button>
-        </p>
+        <ColorValue label="HEX" value={hex} />
+        <ColorValue label="CMYK" value={cmyk.join(", ")} />
+        <ColorValue label="RGB" value={rgb.join(", ")} />
       </div>
     </div>
   );

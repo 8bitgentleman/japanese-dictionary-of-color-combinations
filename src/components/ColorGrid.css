@@ -1,0 +1,131 @@
+.color-grid-container {
+    padding: 20px;
+  }
+  
+  .color-grid-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .sort-select,
+  .filter-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  
+  .color-card {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .color-card:hover {
+    transform: scale(1.05);
+    z-index: 1;
+  }
+  
+  .color-card.expanded {
+    grid-column: span 2;
+    grid-row: span 2;
+    z-index: 2;
+  }
+  
+  .color-popover {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 10;
+  }
+  
+  .color-name {
+    font-weight: bold;
+  }
+  
+  .color-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 8px;
+    overflow: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .expanded .color-details {
+    opacity: 1;
+  }
+  
+  .color-details h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .color-details p {
+    margin: 5px 0;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .section-link {
+    cursor: pointer;
+    color: #0066cc;
+    text-decoration: underline;
+  }
+  
+  .section-link:hover {
+    color: #004499;
+  }
+  
+  .copy-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .copy-icon {
+    width: 16px;
+    height: 16px;
+    color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .color-grid-controls {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .color-card.expanded {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+  }

@@ -7,6 +7,7 @@ import ColorLookup from "./components/ColorLookup";
 import PaletteLookup from "./components/PaletteLookup";
 import PaletteGrid from "./components/PaletteGrid";
 import ImageColorExtractor from "./components/ImageColorExtractor";
+import ColorGrid from "./components/ColorGrid";
 
 const JapaneseColorApp = () => {
   const [data, setData] = useState(null);
@@ -120,6 +121,11 @@ const JapaneseColorApp = () => {
     setActiveTab("main");
   };
 
+  const handleSectionClick = (section) => {
+    setSelectedPalette(section);
+    setActiveTab("main");
+  };
+
   const renderActiveTab = () => {
     if (!data) return null;
 
@@ -160,6 +166,8 @@ const JapaneseColorApp = () => {
             paletteData={data.palettes}
           />
         );
+      case "colors":
+        return <ColorGrid colorData={data.colors} onSectionClick={handleSectionClick} />;
       default:
         return null;
     }
@@ -180,6 +188,12 @@ const JapaneseColorApp = () => {
           className={activeTab === "grid" ? "active" : ""}
         >
           Palette Grid
+        </button>
+        <button
+          onClick={() => setActiveTab("colors")}
+          className={activeTab === "colors" ? "active" : ""}
+        >
+          Color Grid
         </button>
         <button
           onClick={() => setActiveTab("extractor")}
