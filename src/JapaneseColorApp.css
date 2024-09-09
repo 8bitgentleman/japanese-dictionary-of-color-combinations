@@ -460,3 +460,31 @@ input:focus {
 .hidden {
   display: none;
 }
+
+/* Footer styles */
+.app-footer {
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  font-size: 0.9em;
+  color: var(--secondary-color);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.app-footer a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.app-footer a:hover {
+  color: #b83e2e;
+  text-decoration: underline;
+}
+
+.app-footer .emoji {
+  font-size: 1.2em;
+  margin: 0 5px;
+}

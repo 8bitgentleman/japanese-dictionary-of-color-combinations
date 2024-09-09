@@ -207,6 +207,21 @@ const JapaneseColorApp = () => {
       ) : (
         <p className="placeholder-text">Loading data...</p>
       )}
+      <footer className="app-footer">
+        <p>
+          Enjoyed this app? <span className="emoji">🎨</span> Tweet me at{" "}
+          <a href="https://x.com/todayIwasbetter" target="_blank" rel="noopener noreferrer">
+            @todayIwasbetter
+          </a>
+        </p>
+        <p>
+          <span className="emoji">🚀</span> Find the source code on{" "}
+          <a href="https://github.com/8bitgentleman/japanese-dictionary-of-color-combinations" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+        </p>
+        <p>Found a bug? Embrace the wabi-sabi 侘寂</p>
+      </footer>
     </div>
   );
 };
