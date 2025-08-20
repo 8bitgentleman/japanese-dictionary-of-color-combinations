@@ -23,7 +23,7 @@ const JapaneseColorApp = () => {
   useEffect(() => {
     const baseUrl =
       process.env.NODE_ENV === "production"
-        ? "/japanese-dictionary-of-color-combinations"
+        ? ""
         : "http://localhost:3000/japanese-dictionary-of-color-combinations";
 
     fetch(`${baseUrl}/colors.json`)

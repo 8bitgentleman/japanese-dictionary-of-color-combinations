@@ -2,7 +2,6 @@
   "name": "japanese-color-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://8bitgentleman.github.io/japanese-dictionary-of-color-combinations/",
   "dependencies": {
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.13",
@@ -31,7 +30,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "node server.js",

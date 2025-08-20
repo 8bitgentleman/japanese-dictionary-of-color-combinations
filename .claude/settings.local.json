@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(set CI=false)",
+      "Bash(npx react-scripts:*)",
+      "Bash(npm install)",
+      "Bash(npx serve:*)",
+      "Bash(timeout:*)",
+      "mcp__windows-notifications__windows_notification_send"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
