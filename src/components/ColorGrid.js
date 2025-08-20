@@ -21,7 +21,6 @@ const calculateBrightness = (cmyk) => {
 };
 
 const ColorGrid = ({ colorData, onSectionClick }) => {
-  const [hoveredColor, setHoveredColor] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [sortOption, setSortOption] = useState('section');
   const [filterText, setFilterText] = useState('');
@@ -105,8 +104,6 @@ const ColorGrid = ({ colorData, onSectionClick }) => {
             key={colorName}
             className={`color-card ${selectedColor === colorName ? 'expanded' : ''}`}
             style={getColorStyle(colorInfo.CMYK)}
-            onMouseEnter={() => setHoveredColor(colorName)}
-            onMouseLeave={() => setHoveredColor(null)}
             onClick={() => handleColorClick(colorName)}
           >
             {selectedColor === colorName && (

@@ -41,9 +41,6 @@ const JapaneseColorApp = () => {
       .catch((error) => console.error("Error loading colors.json:", error));
   }, []);
 
-  const handleDataLoaded = (loadedData) => {
-    setData(loadedData);
-  };
 
   const handleAddColor = (newColor) => {
     setData((prevData) => {

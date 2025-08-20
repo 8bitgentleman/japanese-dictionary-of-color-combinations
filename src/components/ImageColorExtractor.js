@@ -10,22 +10,35 @@ const ImageColorExtractor = ({ colorData, paletteData }) => {
   const [selectedColor, setSelectedColor] = useState(null);
   const [matchingColors, setMatchingColors] = useState([]);
   const [matchingPalettes, setMatchingPalettes] = useState([]);
-  const [optionalColor, setOptionalColor] = useState(null);
   const [isCameraOn, setIsCameraOn] = useState(false);
   const fileInputRef = useRef(null);
   const imageRef = useRef(null);
   const videoRef = useRef(null);
 
   useEffect(() => {
+    const extractColorsFromImage = async (imageSource) => {
+      const colorThief = new ColorThief();
+      const img = new Image();
+      img.crossOrigin = "Anonymous";
+      img.src = imageSource;
+
+      img.onload = () => {
+        const palette = colorThief.getPalette(img, 5);
+        setExtractedColors(palette.map((rgb) => ({ rgb, hex: rgbToHex(rgb) })));
+      };
+    };
+
     if (image) {
-      extractColors(image);
+      extractColorsFromImage(image);
     }
   }, [image]);
 
   useEffect(() => {
+    const currentVideoRef = videoRef;
     return () => {
-      if (videoRef.current && videoRef.current.srcObject) {
-        const stream = videoRef.current.srcObject;
+      const currentVideo = currentVideoRef.current;
+      if (currentVideo && currentVideo.srcObject) {
+        const stream = currentVideo.srcObject;
         const tracks = stream.getTracks();
         tracks.forEach(track => track.stop());
       }
@@ -78,17 +91,6 @@ const ImageColorExtractor = ({ colorData, paletteData }) => {
     }
   };
 
-  const extractColors = async (imageSource) => {
-    const colorThief = new ColorThief();
-    const img = new Image();
-    img.crossOrigin = "Anonymous";
-    img.src = imageSource;
-
-    img.onload = () => {
-      const palette = colorThief.getPalette(img, 5);
-      setExtractedColors(palette.map((rgb) => ({ rgb, hex: rgbToHex(rgb) })));
-    };
-  };
 
   const handleColorSelect = (color) => {
     setSelectedColor(color);
@@ -135,17 +137,12 @@ const ImageColorExtractor = ({ colorData, paletteData }) => {
   };
 
   const handleOptionalColorSelect = (color) => {
-    setOptionalColor(color);
-    updateMatchingPalettes(color);
-  };
-
-  const updateMatchingPalettes = (newColor) => {
     const updatedPalettes = Object.entries(paletteData)
       .filter(([, palette]) =>
         palette.colors.some(
-          (color) =>
-            matchingColors.some((match) => match.name === color) ||
-            color === newColor.name,
+          (paletteColor) =>
+            matchingColors.some((match) => match.name === paletteColor) ||
+            paletteColor === color.name,
         ),
       )
       .map(([name, palette]) => ({

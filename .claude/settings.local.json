@@ -7,7 +7,8 @@
       "Bash(npm install)",
       "Bash(npx serve:*)",
       "Bash(timeout:*)",
-      "mcp__windows-notifications__windows_notification_send"
+      "mcp__windows-notifications__windows_notification_send",
+      "Bash(CI=false npm run build)"
     ],
     "deny": [],
     "ask": []

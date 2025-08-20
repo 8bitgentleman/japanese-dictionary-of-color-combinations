@@ -9,3 +9,4 @@
 
 [build.environment]
   REACT_APP_BROWSE_ONLY = "true"
+  CI = "false"
