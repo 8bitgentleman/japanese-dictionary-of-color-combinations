@@ -10,18 +10,17 @@
 
 .sort-select,
 .filter-input {
-  padding: 8px;
-  border: 0.5px solid var(--border-color);
-  border-radius: 0;
-  font-size: 14px;
-  background-color: var(--surface);
-  color: var(--text-color);
+  padding: 9px 12px;
+  font-size: 13px;
 }
 
-.sort-select:focus,
-.filter-input:focus {
-  border-color: var(--accent-color);
-  outline: none;
+.sort-select {
+  padding-right: 30px !important;
+  cursor: pointer;
+}
+
+.filter-input::placeholder {
+  color: var(--text-faint);
 }
 
 /* Favorites + all sections */

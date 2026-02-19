@@ -63,7 +63,7 @@ const PaletteGrid = ({ paletteData, colorData, onPaletteClick, favorites, toggle
           className={`favorite-button ${isFavorite ? 'is-favorite' : ''}`}
           onClick={(e) => { e.stopPropagation(); toggleFavorite(paletteName); }}
         >
-          <Star size={20} fill={isFavorite ? "#333333" : "none"} color="#333333" />
+          <Star size={20} fill={isFavorite ? "#A6882A" : "none"} color={isFavorite ? "#A6882A" : "#5C4E42"} />
         </button>
       )}
     </div>

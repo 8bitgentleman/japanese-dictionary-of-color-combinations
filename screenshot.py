@@ -1,0 +1,15 @@
+from playwright.sync_api import sync_playwright
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    page = browser.new_page(viewport={"width": 1280, "height": 900})
+    page.goto('http://localhost:3000')
+    page.wait_for_load_state('networkidle')
+    page.screenshot(path='screenshot_main.png', full_page=True)
+    page.locator('.tabs button').nth(1).click()
+    page.wait_for_timeout(1500)
+    page.screenshot(path='screenshot_palette.png', full_page=True)
+    page.locator('.tabs button').nth(2).click()
+    page.wait_for_timeout(1500)
+    page.screenshot(path='screenshot_colors.png', full_page=True)
+    browser.close()
+    print("Screenshots saved")

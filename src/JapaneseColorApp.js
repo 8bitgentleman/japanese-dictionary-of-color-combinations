@@ -300,20 +300,19 @@ const JapaneseColorApp = () => {
         <p className="placeholder-text">Loading data...</p>
       )}
       <footer className="app-footer">
-        <p className="footer-wabi">侘寂</p>
         <p>
-          Enjoyed this app? Tweet{" "}
+          Enjoyed this app? Tweet me at{" "}
           <a href="https://x.com/todayIwasbetter" target="_blank" rel="noopener noreferrer">
             @todayIwasbetter
           </a>
         </p>
         <p>
-          Source on{" "}
+          Find the source code on{" "}
           <a href="https://github.com/8bitgentleman/japanese-dictionary-of-color-combinations" target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
         </p>
-        <p>Found a bug? Embrace the wabi-sabi.</p>
+        <p>Found a bug? Embrace the wabi-sabi 侘寂</p>
       </footer>
     </div>
   );

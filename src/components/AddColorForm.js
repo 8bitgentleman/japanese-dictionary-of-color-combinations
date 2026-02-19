@@ -21,27 +21,38 @@ const AddColorForm = ({ onAddColor }) => {
     <div className="card">
       <h2>Add New Color</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={colorName}
-          onChange={(e) => setColorName(e.target.value)}
-          placeholder="Color Name"
-          required
-        />
-        {["c", "m", "y", "k"].map((channel) => (
+        <div className="form-group">
+          <label htmlFor="colorName">Color Name</label>
           <input
-            key={channel}
-            type="number"
-            value={cmyk[channel]}
-            onChange={(e) =>
-              setCmyk({ ...cmyk, [channel]: Number(e.target.value) })
-            }
-            placeholder={channel.toUpperCase()}
-            min="0"
-            max="100"
+            id="colorName"
+            type="text"
+            value={colorName}
+            onChange={(e) => setColorName(e.target.value)}
+            placeholder="e.g. Kohaku"
             required
           />
-        ))}
+        </div>
+        <div className="form-group">
+          <label>CMYK</label>
+          <div className="cmyk-group">
+            {["c", "m", "y", "k"].map((channel) => (
+              <React.Fragment key={channel}>
+                <span className="cmyk-label">{channel.toUpperCase()}</span>
+                <input
+                  type="number"
+                  value={cmyk[channel]}
+                  onChange={(e) =>
+                    setCmyk({ ...cmyk, [channel]: Number(e.target.value) })
+                  }
+                  min="0"
+                  max="100"
+                  required
+                  className="cmyk-input"
+                />
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
         <button type="submit">Add Color</button>
       </form>
     </div>

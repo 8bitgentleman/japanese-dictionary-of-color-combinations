@@ -15,11 +15,11 @@
 
 .palette-card {
   position: relative;
-  border: 0.5px solid var(--border-color);
-  border-radius: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 0 !important;
   background: var(--surface);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
 }
 
@@ -33,15 +33,17 @@
 }
 
 .palette-swatches {
-  display: flex;
-  flex-wrap: wrap;
-  height: 150px;
+  display: flex ;
+  flex-wrap: nowrap ;
+  height: 120px ;
 }
 
 .palette-swatch {
-  flex: 1 0 25%;
-  min-width: 25%;
-  height: 50%;
+  flex: 1 ;
+
+  min-width: 0 ;
+
+  height: 100% ;
   position: relative;
   overflow: hidden;
 }
