@@ -181,7 +181,7 @@ const ImageColorExtractor = ({ colorData, paletteData }) => {
   };
 
   return (
-    <div className="image-color-extractor">
+    <div className="image-color-extractor card">
       <h2>Match Image To Palette</h2>
       <div className="upload-section">
         <div className="video-container">

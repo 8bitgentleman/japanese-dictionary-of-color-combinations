@@ -1,0 +1,269 @@
+.pdp-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+
+.pdp-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  max-width: 100vw;
+  height: 100vh;
+  background: var(--surface);
+  border-left: 0.5px solid var(--border-color);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.10);
+  z-index: 1000;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  animation: pdp-slide-in 0.25s ease;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+@keyframes pdp-slide-in {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+/* Header */
+.pdp-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 0.5px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.pdp-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--text-mid);
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.pdp-close:hover {
+  background: var(--surface2);
+  color: var(--accent-color);
+}
+
+.pdp-title {
+  flex: 1;
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 1.05em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-color);
+}
+
+.pdp-star {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+
+.pdp-star:hover {
+  background: var(--surface2);
+  transform: scale(1.1);
+}
+
+/* Section label */
+.pdp-section-label {
+  padding: 8px 16px;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  border-bottom: 0.5px solid var(--border-light);
+  flex-shrink: 0;
+}
+
+/* Color strip */
+.pdp-swatches-strip {
+  display: flex;
+  height: 110px;
+  flex-shrink: 0;
+}
+
+.pdp-swatch-strip-item {
+  flex: 1;
+  height: 100%;
+  min-width: 0;
+}
+
+/* Color list */
+.pdp-color-list {
+  padding: 4px 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Each color row — the whole thing is the clickable toggle */
+.pdp-color-row {
+  border-bottom: 0.5px solid var(--border-light);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.pdp-color-row:last-child {
+  border-bottom: none;
+}
+
+.pdp-color-row:hover {
+  background: var(--surface2);
+}
+
+.pdp-color-row.expanded {
+  background: var(--surface2);
+}
+
+/* Top line of a row: swatch + name/hex + chevron */
+.pdp-color-row-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+}
+
+.pdp-color-swatch {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.pdp-color-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.pdp-color-name {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pdp-color-hex {
+  font-size: 11px;
+  color: var(--text-faint);
+  font-family: monospace;
+  letter-spacing: 0.04em;
+}
+
+.pdp-chevron {
+  flex-shrink: 0;
+  color: var(--text-faint);
+  transition: transform 0.2s ease;
+}
+
+.pdp-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* Expanded value rows */
+.pdp-color-values {
+  padding: 0 16px 12px 70px; /* indent to align under name */
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pdp-value-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 5px 8px;
+  background: none;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  color: var(--text-color);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 12px;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.pdp-value-row:hover {
+  background: var(--bg-deep);
+}
+
+.pdp-value-row.copied {
+  background: rgba(100, 160, 100, 0.15);
+  color: var(--text-color);
+}
+
+.pdp-value-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  width: 32px;
+  flex-shrink: 0;
+}
+
+.pdp-value-text {
+  flex: 1;
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--text-color);
+}
+
+.pdp-copy-icon {
+  flex-shrink: 0;
+  color: var(--text-faint);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.pdp-value-row:hover .pdp-copy-icon,
+.pdp-value-row.copied .pdp-copy-icon {
+  opacity: 1;
+}
+
+.pdp-value-row.copied .pdp-copy-icon {
+  color: #5a9a5a;
+}
+
+@media (max-width: 768px) {
+  .pdp-panel {
+    width: 100vw;
+  }
+
+  .pdp-color-values {
+    padding-left: 16px;
+  }
+}

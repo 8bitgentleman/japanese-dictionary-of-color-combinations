@@ -1,33 +1,21 @@
-.image-color-extractor {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.image-color-extractor h2 {
-  color: var(--accent-color);
-  margin-bottom: 20px;
-}
-
 .upload-section {
   gap: 15px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: flex-start;
 }
+
 .video-container {
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: flex-start;
   width: 100%;
 }
 
 .button-row {
   display: flex;
-  justify-content: left;
+  justify-content: flex-start;
   gap: 10px;
   margin-top: 10px;
 }
@@ -36,17 +24,10 @@
   width: 100%;
   max-width: 500px;
   margin-bottom: 10px;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.upload-btn, .camera-btn, .capture-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.hidden {
-  display: none;
-}
 .upload-btn,
 .camera-btn,
 .capture-btn {
@@ -54,23 +35,22 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 20px;
+  padding: 10px 18px;
   background-color: var(--accent-color);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 2px;
   cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.1s ease;
+  font-size: 14px;
+  font-family: 'Noto Sans JP', sans-serif;
+  transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
 .upload-btn:hover,
 .camera-btn:hover,
 .capture-btn:hover {
-  background-color: #b83e2e;
+  background-color: #70291A;
 }
-
 
 .upload-btn:active,
 .camera-btn:active,
@@ -78,101 +58,120 @@
   transform: scale(0.98);
 }
 
-.hidden {
-  display: none;
-}
-
-.video-preview {
-  width: 100%;
-  max-width: 400px;
-  margin: 10px auto;
-  display: block;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 .image-preview {
   max-width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   text-align: center;
 }
 
 .preview-img {
   max-width: 100%;
   max-height: 400px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: auto;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .extracted-colors,
 .selected-color,
 .matching-colors,
 .matching-palettes {
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .extracted-colors h3,
 .selected-color h3,
 .matching-colors h3,
 .matching-palettes h3 {
-  color: var(--secondary-color);
-  margin-bottom: 15px;
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 0.78em;
+  font-weight: 600;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  margin-bottom: 12px;
 }
 
 .color-list {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .color-item {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .color-item:hover {
   transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .color-swatch-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px;
 }
 
+.optional-color-section {
+  margin-bottom: 24px;
+}
+
+.optional-color-section h3 {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 0.78em;
+  font-weight: 600;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  margin-bottom: 10px;
+}
+
+/* Matching palettes grid */
 .palette-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
 }
 
 .palette-card {
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0;
   overflow: hidden;
 }
 
 .palette-card h4 {
-  padding: 10px;
+  padding: 8px 10px;
   margin: 0;
-  background-color: var(--bg-color);
+  font-size: 12px;
+  font-family: 'Shippori Mincho B1', serif;
+  background-color: var(--surface2);
+  color: var(--text-color);
 }
 
-.palette-swatches {
+.image-color-extractor .palette-swatches {
   display: flex;
-  flex-wrap: wrap;
-  height: 100px;
+  height: 60px;
 }
 
 .palette-swatch {
-  flex: 1 0 20%;
-  min-width: 20%;
-  height: 50%;
+  flex: 1;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .button-row {
+    flex-direction: column;
+  }
+
+  .upload-btn,
+  .camera-btn,
+  .capture-btn {
+    width: 100%;
+  }
 }

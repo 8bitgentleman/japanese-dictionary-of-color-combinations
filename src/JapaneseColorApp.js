@@ -9,12 +9,14 @@ import PaletteGrid from "./components/PaletteGrid";
 import ImageColorExtractor from "./components/ImageColorExtractor";
 import ColorGrid from "./components/ColorGrid";
 import ColorDetailPanel from "./components/ColorDetailPanel";
+import PaletteDetailPanel from "./components/PaletteDetailPanel";
 
 const JapaneseColorApp = () => {
   const [data, setData] = useState(null);
   const [activeTab, setActiveTab] = useState("main");
   const [selectedPalette, setSelectedPalette] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedGridPalette, setSelectedGridPalette] = useState(null);
 
   // Palette favorites — lifted from PaletteGrid so they can be shared with ColorDetailPanel
   const [favoritePalettes, setFavoritePalettes] = useState([]);
@@ -210,14 +212,27 @@ const JapaneseColorApp = () => {
         );
       case "grid":
         return (
-          <PaletteGrid
-            paletteData={data.palettes}
-            colorData={data.colors}
-            onPaletteClick={handlePaletteClick}
-            favorites={favoritePalettes}
-            toggleFavorite={togglePaletteFavorite}
-            isLoaded={paletteFavoritesLoaded}
-          />
+          <>
+            <PaletteGrid
+              paletteData={data.palettes}
+              colorData={data.colors}
+              onPaletteClick={setSelectedGridPalette}
+              selectedPalette={selectedGridPalette}
+              favorites={favoritePalettes}
+              toggleFavorite={togglePaletteFavorite}
+              isLoaded={paletteFavoritesLoaded}
+            />
+            {selectedGridPalette && (
+              <PaletteDetailPanel
+                paletteName={selectedGridPalette}
+                paletteData={data.palettes}
+                colorData={data.colors}
+                onClose={() => setSelectedGridPalette(null)}
+                favoritePalettes={favoritePalettes}
+                togglePaletteFavorite={togglePaletteFavorite}
+              />
+            )}
+          </>
         );
       case "extractor":
         return (
@@ -266,7 +281,7 @@ const JapaneseColorApp = () => {
       </div>
       <div className="tabs">
         <button
-          onClick={() => setActiveTab("main")}
+          onClick={() => { setActiveTab("main"); setSelectedGridPalette(null); }}
           className={activeTab === "main" ? "active" : ""}
         >
           <span className="tab-jp">検索</span>
@@ -280,14 +295,14 @@ const JapaneseColorApp = () => {
           <span className="tab-en">Palettes</span>
         </button>
         <button
-          onClick={() => setActiveTab("colors")}
+          onClick={() => { setActiveTab("colors"); setSelectedGridPalette(null); }}
           className={activeTab === "colors" ? "active" : ""}
         >
           <span className="tab-jp">色</span>
           <span className="tab-en">Colors</span>
         </button>
         <button
-          onClick={() => setActiveTab("extractor")}
+          onClick={() => { setActiveTab("extractor"); setSelectedGridPalette(null); }}
           className={activeTab === "extractor" ? "active" : ""}
         >
           <span className="tab-jp">抽出</span>

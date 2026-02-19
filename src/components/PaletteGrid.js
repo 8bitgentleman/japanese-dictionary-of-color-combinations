@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Star } from "lucide-react";
 import "./PaletteGrid.css";
 
-const PaletteGrid = ({ paletteData, colorData, onPaletteClick, favorites, toggleFavorite, isLoaded }) => {
+const PaletteGrid = ({ paletteData, colorData, onPaletteClick, favorites, toggleFavorite, isLoaded, selectedPalette }) => {
   const [hoveredPalette, setHoveredPalette] = useState(null);
 
   const getColorStyle = (colorName) => {
@@ -38,26 +38,39 @@ const PaletteGrid = ({ paletteData, colorData, onPaletteClick, favorites, toggle
     }
   };
 
-  const renderPaletteCard = (paletteName, palette, isFavorite) => (
+  const renderPaletteCard = (paletteName, palette, isFavorite) => {
+    const topColors = palette.colors.slice(0, -1);
+    const bottomColor = palette.colors[palette.colors.length - 1];
+
+    return (
     <div
       key={paletteName}
-      className={`palette-card ${isFavorite ? "favorite" : ""}`}
+      className={`palette-card ${isFavorite ? "favorite" : ""} ${selectedPalette === paletteName ? "active" : ""}`}
       onClick={() => handlePaletteClick(paletteName)}
       onMouseEnter={() => setHoveredPalette(paletteName)}
       onMouseLeave={() => setHoveredPalette(null)}
     >
       <div className="palette-swatches">
-        {palette.colors.map((colorName) => (
-          <div
-            key={colorName}
-            className="palette-swatch"
-            style={getColorStyle(colorName)}
-          >
-            <div className="color-name">{colorName}</div>
+        {topColors.length > 0 && (
+          <div className="palette-swatches-top">
+            {topColors.map((colorName) => (
+              <div
+                key={colorName}
+                className="palette-swatch"
+                style={getColorStyle(colorName)}
+              >
+                <div className="color-name">{colorName}</div>
+              </div>
+            ))}
           </div>
-        ))}
+        )}
+        <div
+          className="palette-swatch palette-swatch-bottom"
+          style={getColorStyle(bottomColor)}
+        >
+          <div className="color-name">{bottomColor}</div>
+        </div>
       </div>
-      <div className="palette-name">{paletteName}</div>
       {(isFavorite || hoveredPalette === paletteName) && (
         <button
           className={`favorite-button ${isFavorite ? 'is-favorite' : ''}`}
@@ -67,7 +80,8 @@ const PaletteGrid = ({ paletteData, colorData, onPaletteClick, favorites, toggle
         </button>
       )}
     </div>
-  );
+    );
+  };
 
   if (!isLoaded) {
     return <div>Loading...</div>;
