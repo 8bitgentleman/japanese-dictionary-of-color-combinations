@@ -87,8 +87,8 @@ const ColorGrid = ({
         >
           <Star
             size={13}
-            fill={isFavorite ? '#f5a623' : 'none'}
-            color={isFavorite ? '#f5a623' : '#fff'}
+            fill={isFavorite ? '#A6882A' : 'none'}
+            color={isFavorite ? '#A6882A' : '#fff'}
           />
         </button>
       </div>
@@ -119,7 +119,10 @@ const ColorGrid = ({
 
       {favoriteColorEntries.length > 0 && (
         <div className="favorite-colors-section">
-          <h2>Favorite Colors</h2>
+          <div className="section-divider">
+            <span className="section-divider-text">Favorites</span>
+            <span className="section-divider-count">· {favoriteColorEntries.length}</span>
+          </div>
           <div className="color-grid">
             {favoriteColorEntries.map(([name, info]) => renderColorCard(name, info))}
           </div>
@@ -127,7 +130,12 @@ const ColorGrid = ({
       )}
 
       <div className={favoriteColorEntries.length > 0 ? 'all-colors-section' : ''}>
-        {favoriteColorEntries.length > 0 && <h2>All Colors</h2>}
+        {favoriteColorEntries.length > 0 && (
+          <div className="section-divider">
+            <span className="section-divider-text">All Colors</span>
+            <span className="section-divider-count">· {sortedAndFilteredColors.length}</span>
+          </div>
+        )}
         <div className="color-grid">
           {sortedAndFilteredColors.map(([name, info]) => renderColorCard(name, info))}
         </div>

@@ -77,7 +77,10 @@ const PaletteGrid = ({ paletteData, colorData, onPaletteClick, favorites, toggle
     <div className="palette-grid-container">
       {favorites.length > 0 && (
         <div className="favorites-section">
-          <h2>Favorites</h2>
+          <div className="section-divider">
+            <span className="section-divider-text">Favorites</span>
+            <span className="section-divider-count">· {favorites.length}</span>
+          </div>
           <div className="palette-grid">
             {favorites.map((paletteName) =>
               paletteData[paletteName] ? renderPaletteCard(paletteName, paletteData[paletteName], true) : null
@@ -86,7 +89,10 @@ const PaletteGrid = ({ paletteData, colorData, onPaletteClick, favorites, toggle
         </div>
       )}
       <div className="all-palettes-section">
-        <h2>All Palettes</h2>
+        <div className="section-divider">
+          <span className="section-divider-text">All Palettes</span>
+          <span className="section-divider-count">· {Object.keys(paletteData).length}</span>
+        </div>
         <div className="palette-grid">
           {Object.entries(paletteData).map(([paletteName, palette]) =>
             renderPaletteCard(paletteName, palette, favorites.includes(paletteName))

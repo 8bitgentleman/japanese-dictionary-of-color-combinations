@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本の配色辞典 — Washi Direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;700;800&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #F2E6D0;
+  --bg-deep:   #E8D9BC;
+  --surface:   #FAF3E8;
+  --surface2:  #F0E6D2;
+  --text:      #1E1916;
+  --text-mid:  #5C4E42;
+  --text-faint:#9B8878;
+  --border:    #CEC0A8;
+  --border-lt: #DDD0BB;
+  --accent:    #8B3320;
+  --accent-hv: #721F12;
+  --gold:      #A6882A;
+  --gold-lt:   #C5A845;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* Thin accent line at very top */
+body::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: var(--accent);
+}
+
+.app {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+/* ─── HEADER ──────────────────────────────────────── */
+.site-header {
+  text-align: center;
+  padding: 44px 0 28px;
+}
+
+.header-seal {
+  width: 64px;
+  height: 64px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 22px;
+  letter-spacing: 3px;
+  opacity: 0.85;
+}
+
+.title-jp {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.title-en {
+  font-size: 0.72rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  font-weight: 300;
+}
+
+.header-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 360px;
+  margin: 22px auto 0;
+}
+.header-divider::before,
+.header-divider::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: var(--border);
+}
+.header-divider-diamond {
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* ─── NAVIGATION ──────────────────────────────────── */
+.nav {
+  display: flex;
+  justify-content: center;
+  border-bottom: 0.5px solid var(--border);
+  margin-bottom: 32px;
+  gap: 4px;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  padding: 10px 22px 12px;
+  color: var(--text-mid);
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 0.88rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: color 0.2s;
+}
+.nav-btn-jp {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+}
+.nav-btn-en {
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+.nav-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5px;
+  left: 20%;
+  right: 20%;
+  height: 1.5px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+.nav-btn.active { color: var(--accent); }
+.nav-btn.active::after { transform: scaleX(1); }
+.nav-btn:hover { color: var(--text); }
+
+/* ─── GRID CONTROLS ───────────────────────────────── */
+.grid-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 12px;
+}
+
+.ctrl-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-mid);
+  letter-spacing: 0.04em;
+}
+.ctrl-label {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+}
+.ctrl-select, .ctrl-input {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  padding: 7px 10px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: var(--text);
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.2s;
+  cursor: pointer;
+}
+.ctrl-select:focus, .ctrl-input:focus {
+  border-color: var(--accent);
+}
+.ctrl-input { width: 180px; }
+.ctrl-input::placeholder { color: var(--text-faint); }
+
+/* ─── SECTION HEADER ──────────────────────────────── */
+.section-hd {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 32px 0 14px;
+}
+.section-hd-jp {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 1.0rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.06em;
+}
+.section-hd-count {
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+}
+.section-hd::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: var(--border-lt);
+  margin-left: 2px;
+}
+
+/* ─── COLOR GRID ──────────────────────────────────── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+  gap: 6px;
+}
+
+.c-card {
+  aspect-ratio: 1;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.10);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.c-card:hover {
+  transform: scale(1.055);
+  z-index: 1;
+  box-shadow: 0 6px 20px rgba(30,25,22,0.18), inset 0 0 0 0.5px rgba(0,0,0,0.10);
+}
+.c-card.selected {
+  transform: scale(1.055);
+  z-index: 2;
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 3.5px var(--accent), 0 6px 20px rgba(30,25,22,0.2);
+}
+
+.c-card-over {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(25,20,16,0.72) 0%, transparent 52%);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 6px 7px;
+  pointer-events: none;
+}
+.c-card:hover .c-card-over,
+.c-card.selected .c-card-over { opacity: 1; }
+
+.c-name-jp {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.95);
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+}
+.c-name-en {
+  font-size: 7.5px;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+.c-fav-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(20,16,12,0.28);
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 3px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.18s, transform 0.15s;
+  display: flex;
+  line-height: 1;
+}
+.c-card:hover .c-fav-btn,
+.c-fav-btn.on { opacity: 1; }
+.c-fav-btn:hover { transform: scale(1.15); }
+.c-fav-btn.on { color: var(--gold-lt); }
+
+/* ─── DETAIL PANEL ────────────────────────────────── */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(30,25,22,0.22);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+.backdrop.on { opacity: 1; pointer-events: all; }
+
+.detail-panel {
+  position: fixed;
+  top: 0; right: 0;
+  width: 360px;
+  max-width: 100vw;
+  height: 100vh;
+  background: var(--surface);
+  border-left: 0.5px solid var(--border);
+  box-shadow: -6px 0 32px rgba(30,25,22,0.16);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.28s cubic-bezier(0.2, 0, 0, 1);
+}
+.detail-panel.on { transform: translateX(0); }
+
+.dp-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 15px;
+  border-bottom: 0.5px solid var(--border-lt);
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  z-index: 10;
+  flex-shrink: 0;
+}
+.dp-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-mid);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 2px;
+  transition: color 0.15s;
+}
+.dp-close:hover { color: var(--accent); background: none; }
+.dp-names { flex: 1; overflow: hidden; }
+.dp-name-jp {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dp-name-en {
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.dp-star {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-faint);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: color 0.15s, transform 0.15s;
+  border-radius: 2px;
+}
+.dp-star:hover { color: var(--gold); transform: scale(1.12); background: none; }
+.dp-star.on { color: var(--gold); }
+
+.dp-swatch {
+  width: 100%;
+  height: 130px;
+  flex-shrink: 0;
+}
+
+.dp-values {
+  padding: 12px 15px;
+  border-bottom: 0.5px solid var(--border-lt);
+  flex-shrink: 0;
+}
+.dp-val-row {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 0.5px solid var(--bg-deep);
+  font-size: 12px;
+}
+.dp-val-row:last-child { border-bottom: none; }
+.dp-val-lbl {
+  width: 38px;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+.dp-val-txt {
+  flex: 1;
+  font-family: monospace;
+  font-size: 11.5px;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+.dp-copy {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-faint);
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  transition: color 0.12s;
+  font-size: 11px;
+}
+.dp-copy:hover { color: var(--accent); background: none; }
+
+.dp-palettes {
+  padding: 12px 15px;
+  flex: 1;
+  overflow-y: auto;
+}
+.dp-pal-lbl {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 12px;
+}
+.dp-pal-list { display: flex; flex-direction: column; gap: 8px; }
+
+.dp-pal-card {
+  border: 0.5px solid var(--border);
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.18s;
+}
+.dp-pal-card:hover { box-shadow: 0 2px 10px rgba(30,25,22,0.12); }
+.dp-pal-card.fav { border-color: var(--gold); border-width: 1px; }
+
+.dp-pal-swatches { display: flex; height: 46px; }
+.dp-pal-sw { flex: 1; }
+.dp-pal-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 9px;
+  background: var(--surface);
+}
+.dp-pal-name {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dp-pal-sec {
+  font-size: 9px;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  margin-right: 6px;
+}
+
+/* ─── PALETTE GRID VIEW ───────────────────────────── */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+.p-card {
+  border: 0.5px solid var(--border);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: var(--surface);
+}
+.p-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30,25,22,0.12);
+}
+.p-card.fav { border-color: var(--gold); border-width: 1px; }
+.p-swatches { display: flex; height: 130px; flex-wrap: wrap; }
+.p-swatch { flex: 1 0 50%; height: 50%; }
+.p-foot {
+  padding: 9px 11px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 0.5px solid var(--border-lt);
+}
+.p-foot-name {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.p-foot-section {
+  font-size: 9px;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+}
+
+/* ─── FOOTER ──────────────────────────────────────── */
+.site-footer {
+  margin-top: 56px;
+  padding: 24px 0;
+  border-top: 0.5px solid var(--border);
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 0.78rem;
+}
+.footer-wabi {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  color: var(--text-mid);
+  margin-bottom: 10px;
+}
+.site-footer a { color: var(--accent); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+
+/* ─── TABS DISPLAY ────────────────────────────────── */
+.view { display: none; }
+.view.active { display: block; }
+
+/* ─── ANNOTATION BADGE ────────────────────────────── */
+.note-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-seal">色</div>
+    <div class="title-jp">日本の配色辞典</div>
+    <div class="title-en">Japanese Dictionary of Color Combinations</div>
+    <div class="header-divider"><div class="header-divider-diamond"></div></div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <button class="nav-btn" data-view="lookup">
+      <span class="nav-btn-jp">検索</span>
+      <span class="nav-btn-en">Lookup</span>
+    </button>
+    <button class="nav-btn active" data-view="colors">
+      <span class="nav-btn-jp">色グリッド</span>
+      <span class="nav-btn-en">Colors</span>
+    </button>
+    <button class="nav-btn" data-view="palettes">
+      <span class="nav-btn-jp">配色グリッド</span>
+      <span class="nav-btn-en">Palettes</span>
+    </button>
+    <button class="nav-btn" data-view="extract">
+      <span class="nav-btn-jp">色抽出</span>
+      <span class="nav-btn-en">Extract</span>
+    </button>
+  </nav>
+
+  <!-- COLOR GRID VIEW -->
+  <div class="view active" id="view-colors">
+    <div class="grid-controls">
+      <div class="ctrl-group">
+        <span class="ctrl-label">Sort</span>
+        <select class="ctrl-select">
+          <option>By Section</option>
+          <option>By Name</option>
+          <option>By Hue</option>
+          <option>By Brightness</option>
+        </select>
+      </div>
+      <div class="ctrl-group">
+        <input class="ctrl-input" type="text" placeholder="Filter colors…">
+      </div>
+    </div>
+    <div id="color-grid-root"></div>
+  </div>
+
+  <!-- PALETTE GRID VIEW -->
+  <div class="view" id="view-palettes">
+    <div class="section-hd">
+      <span class="section-hd-jp">全配色</span>
+      <span class="section-hd-count">· 10 palettes</span>
+    </div>
+    <div class="palette-grid" id="palette-grid-root"></div>
+  </div>
+
+  <!-- LOOKUP VIEW (placeholder) -->
+  <div class="view" id="view-lookup">
+    <div class="section-hd">
+      <span class="section-hd-jp">色・配色 検索</span>
+    </div>
+    <p style="color:var(--text-mid);font-size:0.88rem;padding:24px 0;">
+      Search for colors by name, or look up a palette by section.
+    </p>
+  </div>
+
+  <!-- EXTRACT VIEW (placeholder) -->
+  <div class="view" id="view-extract">
+    <div class="section-hd">
+      <span class="section-hd-jp">画像から色を抽出</span>
+    </div>
+    <p style="color:var(--text-mid);font-size:0.88rem;padding:24px 0;">
+      Upload an image to extract its closest Japanese traditional colors.
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-wabi">侘寂 · wabi-sabi</div>
+    <p>Found a bug? Embrace it. · <a href="#">@todayIwasbetter</a> · <a href="#">GitHub</a></p>
+  </footer>
+
+</div><!-- .app -->
+
+<!-- BACKDROP -->
+<div class="backdrop" id="backdrop"></div>
+
+<!-- DETAIL PANEL -->
+<aside class="detail-panel" id="detail-panel">
+  <div class="dp-header">
+    <button class="dp-close" id="dp-close" title="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="dp-names">
+      <div class="dp-name-jp" id="dp-name-jp">—</div>
+      <div class="dp-name-en" id="dp-name-en">—</div>
+    </div>
+    <button class="dp-star" id="dp-star" title="Favorite">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </button>
+  </div>
+  <div class="dp-swatch" id="dp-swatch"></div>
+  <div class="dp-values">
+    <div class="dp-val-row">
+      <span class="dp-val-lbl">HEX</span>
+      <span class="dp-val-txt" id="dp-hex">—</span>
+      <button class="dp-copy" onclick="copyVal('dp-hex')">copy</button>
+    </div>
+    <div class="dp-val-row">
+      <span class="dp-val-lbl">CMYK</span>
+      <span class="dp-val-txt" id="dp-cmyk">—</span>
+      <button class="dp-copy" onclick="copyVal('dp-cmyk')">copy</button>
+    </div>
+    <div class="dp-val-row">
+      <span class="dp-val-lbl">RGB</span>
+      <span class="dp-val-txt" id="dp-rgb">—</span>
+      <button class="dp-copy" onclick="copyVal('dp-rgb')">copy</button>
+    </div>
+  </div>
+  <div class="dp-palettes">
+    <div class="dp-pal-lbl">Used in palettes</div>
+    <div class="dp-pal-list" id="dp-pal-list"></div>
+  </div>
+</aside>
+
+<script>
+const colors = [
+  { jp:'朱',    en:'Vermilion',      hex:'#E83820', cmyk:[0,77,87,9],  section:'暖色系' },
+  { jp:'珊瑚',  en:'Coral',          hex:'#F0785A', cmyk:[0,50,62,6],  section:'暖色系' },
+  { jp:'一斤染',en:'Blush',          hex:'#F5B8AD', cmyk:[0,25,29,4],  section:'暖色系' },
+  { jp:'橙',    en:'Orange',         hex:'#F07020', cmyk:[0,53,87,6],  section:'暖色系' },
+  { jp:'山吹',  en:'Golden Yellow',  hex:'#F5C800', cmyk:[0,18,100,4], section:'暖色系' },
+  { jp:'琥珀',  en:'Amber',          hex:'#E8A820', cmyk:[0,27,86,9],  section:'暖色系' },
+  { jp:'撫子',  en:'Pink Carnation', hex:'#F0A0C8', cmyk:[0,33,17,6],  section:'暖色系' },
+  { jp:'牡丹',  en:'Peony',          hex:'#D84898', cmyk:[0,66,30,15], section:'暖色系' },
+  { jp:'萌葱',  en:'Young Green',    hex:'#70C040', cmyk:[43,0,67,25], section:'緑色系' },
+  { jp:'若草',  en:'Young Grass',    hex:'#90C030', cmyk:[25,0,75,25], section:'緑色系' },
+  { jp:'松葉',  en:'Pine Needle',    hex:'#508040', cmyk:[37,0,50,50], section:'緑色系' },
+  { jp:'常盤',  en:'Evergreen',      hex:'#306840', cmyk:[55,0,40,58], section:'緑色系' },
+  { jp:'海松',  en:'Sea Pine',       hex:'#507050', cmyk:[29,0,29,56], section:'緑色系' },
+  { jp:'利休鼠',en:'Rikyu Gray',     hex:'#809070', cmyk:[11,0,22,44], section:'緑色系' },
+  { jp:'浅葱',  en:'Pale Blue-Green',hex:'#60C8C0', cmyk:[53,0,6,22], section:'青色系' },
+  { jp:'縹',    en:'Indigo Blue',    hex:'#4090B8', cmyk:[65,22,0,28], section:'青色系' },
+  { jp:'納戸',  en:'Nando Blue',     hex:'#306890', cmyk:[67,27,0,44], section:'青色系' },
+  { jp:'藍',    en:'Indigo',         hex:'#204880', cmyk:[75,43,0,50], section:'青色系' },
+  { jp:'紺',    en:'Dark Navy',      hex:'#182860', cmyk:[75,58,0,62], section:'青色系' },
+  { jp:'群青',  en:'Ultramarine',    hex:'#3848C0', cmyk:[70,62,0,25], section:'青色系' },
+  { jp:'藤',    en:'Wisteria',       hex:'#9080D0', cmyk:[31,38,0,18], section:'紫色系' },
+  { jp:'紫',    en:'Purple',         hex:'#783890', cmyk:[17,61,0,44], section:'紫色系' },
+  { jp:'江戸紫',en:'Edo Purple',     hex:'#602880', cmyk:[25,68,0,50], section:'紫色系' },
+  { jp:'茄子',  en:'Eggplant',       hex:'#401858', cmyk:[27,73,0,65], section:'紫色系' },
+  { jp:'茶',    en:'Brown',          hex:'#805030', cmyk:[0,37,62,50], section:'中間色' },
+  { jp:'煤竹',  en:'Smoked Bamboo',  hex:'#504030', cmyk:[0,20,40,69], section:'中間色' },
+  { jp:'象牙',  en:'Ivory',          hex:'#F8F0E0', cmyk:[0,3,9,3],   section:'中間色' },
+  { jp:'生成',  en:'Raw Silk',       hex:'#F0E8D0', cmyk:[0,3,13,6],  section:'中間色' },
+  { jp:'銀鼠',  en:'Silver Gray',    hex:'#B8B8B8', cmyk:[0,0,0,28],  section:'モノクロ' },
+  { jp:'鼠',    en:'Mouse Gray',     hex:'#909090', cmyk:[0,0,0,44],  section:'モノクロ' },
+  { jp:'鉛色',  en:'Lead',           hex:'#606060', cmyk:[4,4,4,62],  section:'モノクロ' },
+  { jp:'黒',    en:'Black',          hex:'#1A1A1A', cmyk:[20,10,15,100],section:'モノクロ'},
+  { jp:'白',    en:'White',          hex:'#FEFEFE', cmyk:[0,0,0,0],   section:'モノクロ' },
+];
+
+const palettes = [
+  { id:1,  name:'朱と金',    section:'暖色系', colors:['朱','橙','山吹','象牙'] },
+  { id:2,  name:'海の青',    section:'青色系', colors:['浅葱','縹','納戸','藍'] },
+  { id:3,  name:'緑の階調',  section:'緑色系', colors:['萌葱','若草','松葉','常盤'] },
+  { id:4,  name:'紫の夢',    section:'紫色系', colors:['撫子','藤','紫','茄子'] },
+  { id:5,  name:'土と草',    section:'中間色', colors:['茶','煤竹','海松','利休鼠'] },
+  { id:6,  name:'薄墨から黒',section:'モノクロ',colors:['生成','銀鼠','鼠','黒'] },
+  { id:7,  name:'朱と縹',    section:'対照色', colors:['朱','珊瑚','縹','藍'] },
+  { id:8,  name:'秋の野',    section:'暖色系', colors:['山吹','琥珀','茶','煤竹'] },
+  { id:9,  name:'春の色',    section:'緑色系', colors:['若草','浅葱','珊瑚','象牙'] },
+  { id:10, name:'夜の闇',    section:'青色系', colors:['藍','江戸紫','鉛色','煤竹'] },
+];
+
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  return [r,g,b];
+}
+function getHex(jp) {
+  const c = colors.find(c=>c.jp===jp);
+  return c ? c.hex : '#CCCCCC';
+}
+function getPalettesFor(jp) {
+  return palettes.filter(p=>p.colors.includes(jp));
+}
+
+// ─── Build color grid ────────────────────────────
+const sections = [...new Set(colors.map(c=>c.section))];
+const gridRoot = document.getElementById('color-grid-root');
+let selectedColor = null;
+const favorites = new Set();
+
+function buildGrid() {
+  gridRoot.innerHTML = '';
+  sections.forEach(sec => {
+    const inSec = colors.filter(c=>c.section===sec);
+    const hd = document.createElement('div');
+    hd.className = 'section-hd';
+    hd.innerHTML = `<span class="section-hd-jp">${sec}</span><span class="section-hd-count">· ${inSec.length}</span>`;
+    gridRoot.appendChild(hd);
+
+    const grid = document.createElement('div');
+    grid.className = 'color-grid';
+    inSec.forEach(c => {
+      const card = document.createElement('div');
+      card.className = 'c-card' + (c.jp===selectedColor?' selected':'');
+      card.style.background = c.hex;
+      card.dataset.jp = c.jp;
+      card.innerHTML = `
+        <div class="c-card-over">
+          <div class="c-name-jp">${c.jp}</div>
+          <div class="c-name-en">${c.en}</div>
+        </div>
+        <button class="c-fav-btn${favorites.has(c.jp)?' on':''}" data-jp="${c.jp}" title="Favorite">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="${favorites.has(c.jp)?'currentColor':'none'}" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </button>`;
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.c-fav-btn')) return;
+        openPanel(c.jp);
+      });
+      card.querySelector('.c-fav-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleFav(c.jp);
+      });
+      grid.appendChild(card);
+    });
+    gridRoot.appendChild(grid);
+  });
+}
+
+function toggleFav(jp) {
+  if (favorites.has(jp)) favorites.delete(jp); else favorites.add(jp);
+  buildGrid();
+  if (selectedColor===jp) {
+    document.getElementById('dp-star').classList.toggle('on', favorites.has(jp));
+  }
+}
+
+// ─── Build palette grid ──────────────────────────
+const palGrid = document.getElementById('palette-grid-root');
+palettes.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'p-card';
+  const swatches = p.colors.map(jp=>`<div class="p-swatch" style="background:${getHex(jp)}"></div>`).join('');
+  card.innerHTML = `
+    <div class="p-swatches">${swatches}</div>
+    <div class="p-foot">
+      <div>
+        <div class="p-foot-name">${p.name}</div>
+        <div class="p-foot-section">${p.section}</div>
+      </div>
+    </div>`;
+  palGrid.appendChild(card);
+});
+
+// ─── Detail panel ────────────────────────────────
+function openPanel(jp) {
+  const c = colors.find(c=>c.jp===jp);
+  if (!c) return;
+  selectedColor = jp;
+
+  document.getElementById('dp-name-jp').textContent = c.jp;
+  document.getElementById('dp-name-en').textContent = c.en;
+  document.getElementById('dp-swatch').style.background = c.hex;
+  document.getElementById('dp-hex').textContent = c.hex;
+  document.getElementById('dp-cmyk').textContent = `${c.cmyk[0]}  ${c.cmyk[1]}  ${c.cmyk[2]}  ${c.cmyk[3]}`;
+  const [r,g,b] = hexToRgb(c.hex);
+  document.getElementById('dp-rgb').textContent = `${r}  ${g}  ${b}`;
+
+  const star = document.getElementById('dp-star');
+  star.classList.toggle('on', favorites.has(jp));
+
+  const palList = document.getElementById('dp-pal-list');
+  const pals = getPalettesFor(jp);
+  palList.innerHTML = pals.length ? pals.map(p=>`
+    <div class="dp-pal-card">
+      <div class="dp-pal-swatches">${p.colors.map(j=>`<div class="dp-pal-sw" style="background:${getHex(j)}"></div>`).join('')}</div>
+      <div class="dp-pal-foot">
+        <span class="dp-pal-sec">${p.section}</span>
+        <span class="dp-pal-name">${p.name}</span>
+      </div>
+    </div>`).join('') : '<p style="font-size:12px;color:var(--text-faint)">Not used in any palettes.</p>';
+
+  document.getElementById('detail-panel').classList.add('on');
+  document.getElementById('backdrop').classList.add('on');
+  buildGrid();
+}
+
+function closePanel() {
+  selectedColor = null;
+  document.getElementById('detail-panel').classList.remove('on');
+  document.getElementById('backdrop').classList.remove('on');
+  buildGrid();
+}
+
+document.getElementById('dp-close').addEventListener('click', closePanel);
+document.getElementById('backdrop').addEventListener('click', closePanel);
+document.getElementById('dp-star').addEventListener('click', () => {
+  if (selectedColor) toggleFav(selectedColor);
+});
+document.addEventListener('keydown', e => { if(e.key==='Escape') closePanel(); });
+
+function copyVal(id) {
+  const el = document.getElementById(id);
+  if (el) navigator.clipboard.writeText(el.textContent).catch(()=>{});
+}
+
+// ─── Nav tabs ────────────────────────────────────
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const viewId = 'view-' + btn.dataset.view;
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    document.getElementById(viewId).classList.add('active');
+    closePanel();
+  });
+});
+
+buildGrid();
+</script>
+</body>
+</html>

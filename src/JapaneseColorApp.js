@@ -258,31 +258,40 @@ const JapaneseColorApp = () => {
 
   return (
     <div className="app-container">
-      <h1>Japanese Color Combinations</h1>
+      <div className="site-header">
+        <div className="header-seal">色</div>
+        <div className="title-jp">日本の配色辞典</div>
+        <div className="title-en">Japanese Dictionary of Color Combinations</div>
+        <div className="header-divider"><div className="header-divider-diamond"></div></div>
+      </div>
       <div className="tabs">
         <button
           onClick={() => setActiveTab("main")}
           className={activeTab === "main" ? "active" : ""}
         >
-          Main
+          <span className="tab-jp">検索</span>
+          <span className="tab-en">Main</span>
         </button>
         <button
           onClick={() => setActiveTab("grid")}
           className={activeTab === "grid" ? "active" : ""}
         >
-          Palette Grid
+          <span className="tab-jp">配色</span>
+          <span className="tab-en">Palettes</span>
         </button>
         <button
           onClick={() => setActiveTab("colors")}
           className={activeTab === "colors" ? "active" : ""}
         >
-          Color Grid
+          <span className="tab-jp">色</span>
+          <span className="tab-en">Colors</span>
         </button>
         <button
           onClick={() => setActiveTab("extractor")}
           className={activeTab === "extractor" ? "active" : ""}
         >
-          Color Extractor
+          <span className="tab-jp">抽出</span>
+          <span className="tab-en">Extract</span>
         </button>
       </div>
       {data ? (
@@ -291,19 +300,20 @@ const JapaneseColorApp = () => {
         <p className="placeholder-text">Loading data...</p>
       )}
       <footer className="app-footer">
+        <p className="footer-wabi">侘寂</p>
         <p>
-          Enjoyed this app? <span className="emoji">🎨</span> Tweet me at{" "}
+          Enjoyed this app? Tweet{" "}
           <a href="https://x.com/todayIwasbetter" target="_blank" rel="noopener noreferrer">
             @todayIwasbetter
           </a>
         </p>
         <p>
-          <span className="emoji">🚀</span> Find the source code on{" "}
+          Source on{" "}
           <a href="https://github.com/8bitgentleman/japanese-dictionary-of-color-combinations" target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
         </p>
-        <p>Found a bug? Embrace the wabi-sabi 侘寂</p>
+        <p>Found a bug? Embrace the wabi-sabi.</p>
       </footer>
     </div>
   );

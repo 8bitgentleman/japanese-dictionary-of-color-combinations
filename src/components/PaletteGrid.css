@@ -7,13 +7,6 @@
   margin-bottom: 40px;
 }
 
-.favorites-section h2,
-.all-palettes-section h2 {
-  margin-bottom: 20px;
-  font-size: 1.5em;
-  color: #333;
-}
-
 .palette-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -22,8 +15,9 @@
 
 .palette-card {
   position: relative;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 0.5px solid var(--border-color);
+  border-radius: 0;
+  background: var(--surface);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
@@ -31,11 +25,11 @@
 
 .palette-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .palette-card.favorite {
-  border: 2px solid gold;
+  border: 1px solid var(--gold);
 }
 
 .palette-swatches {
@@ -76,15 +70,17 @@
 }
 
 .palette-name {
+  font-family: 'Shippori Mincho B1', serif;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(250, 243, 232, 0.9);
   padding: 8px;
   text-align: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+  color: var(--text-color);
 }
 
 .palette-card:hover .palette-name {

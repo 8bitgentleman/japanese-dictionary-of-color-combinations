@@ -1,39 +1,47 @@
-@import url("https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Zen+Kaku+Gothic+New&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;700;800&family=Noto+Sans+JP:wght@300;400&display=swap");
 
 :root {
-  --bg-color: #f5f5f5;
-  --text-color: #333333;
-  --accent-color: #d14836;
-  --secondary-color: #6b6b6b;
-  --border-color: #e0e0e0;
+  --bg-color:       #F2E6D0;
+  --bg-deep:        #E8D9BC;
+  --surface:        #FAF3E8;
+  --surface2:       #F0E6D2;
+  --text-color:     #1E1916;
+  --text-mid:       #5C4E42;
+  --text-faint:     #9B8878;
+  --accent-color:   #8B3320;
+  --secondary-color:#5C4E42;
+  --border-color:   #CEC0A8;
+  --border-light:   #DDD0BB;
+  --gold:           #A6882A;
+  --gold-light:     #C5A845;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @keyframes slideIn {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent-color);
+  z-index: 9999;
 }
 
 .app-container {
@@ -43,7 +51,94 @@ body {
   animation: fadeIn 0.5s ease-out;
 }
 
-h1,
+/* ── Header ── */
+.site-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-color);
+  color: var(--accent-color);
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.title-jp {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 1.6em;
+  font-weight: 700;
+  color: var(--text-color);
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+
+.title-en {
+  font-size: 0.85em;
+  font-weight: 300;
+  color: var(--text-mid);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.header-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-divider::before,
+.header-divider::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background-color: var(--border-color);
+  max-width: 200px;
+}
+
+.header-divider-diamond {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-color);
+  transform: rotate(45deg);
+  margin: 0 10px;
+  flex-shrink: 0;
+}
+
+/* ── Section dividers ── */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 0.5px solid var(--border-color);
+}
+
+.section-divider-text {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 0.78em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+}
+
+.section-divider-count {
+  font-size: 0.78em;
+  color: var(--text-faint);
+}
+
+/* ── Headings ── */
 h2,
 h3,
 h4 {
@@ -51,110 +146,115 @@ h4 {
   margin-bottom: 20px;
 }
 
-h1 {
-  font-size: 2.5em;
-  text-align: center;
-  position: relative;
-  padding-bottom: 20px;
-}
+h2 { font-size: 1.75em; }
+h3 { font-size: 1.5em; }
+h4 { font-size: 1.25em; }
 
-h1::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 4px;
-  background-color: var(--accent-color);
-}
-
-h2 {
-  font-size: 1.75em;
-}
-
-h3 {
-  font-size: 1.5em;
-}
-
-h4 {
-  font-size: 1.25em;
-}
-
+/* ── Card ── */
 .card {
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border: 0.5px solid var(--border-color);
+  border-radius: 2px;
   padding: 20px;
   margin-bottom: 20px;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--surface);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.3s ease;
 }
 
 .card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.10);
 }
 
+/* ── Buttons ── */
 button {
   background-color: var(--accent-color);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 10px 20px;
   font-size: 16px;
+  font-family: 'Noto Sans JP', sans-serif;
   cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.1s ease;
+  transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
 button:hover {
-  background-color: #b83e2e;
+  background-color: #70291A;
 }
 
 button:active {
   transform: scale(0.98);
 }
 
-input {
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+/* ── Inputs ── */
+input,
+select {
+  border: 0.5px solid var(--border-color);
+  border-radius: 0;
   padding: 10px;
   font-size: 16px;
+  background-color: var(--surface);
+  color: var(--text-color);
   transition: border-color 0.3s ease;
 }
 
-input:focus {
+input:focus,
+select:focus {
   border-color: var(--accent-color);
   outline: none;
 }
 
+/* ── Tabs ── */
 .tabs {
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
+  gap: 0;
 }
 
 .tabs button {
   background-color: transparent;
-  color: var(--text-color);
+  color: var(--text-mid);
   border: none;
-  padding: 10px 20px;
-  margin: 0 10px;
-  font-size: 18px;
+  border-bottom: 1.5px solid transparent;
+  padding: 8px 22px 10px;
+  margin: 0;
+  font-size: 14px;
+  font-family: 'Noto Sans JP', sans-serif;
   cursor: pointer;
-  transition:
-    color 0.3s ease,
-    border-bottom 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+.tabs button:hover {
+  color: var(--text-color);
+  background-color: transparent;
 }
 
 .tabs button.active {
   color: var(--accent-color);
-  font-weight: 500;
   border-bottom: 2px solid var(--accent-color);
 }
 
-/* Retain and update existing color-related classes */
+.tab-jp {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 0.95em;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.tab-en {
+  font-size: 0.72em;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  color: inherit;
+}
+
+/* ── Palette colors ── */
 .palette-colors {
   display: flex;
   flex-wrap: wrap;
@@ -166,7 +266,7 @@ input:focus {
   width: 20px;
   height: 20px;
   margin-right: 6px;
-  border: 1px solid #ccc;
+  border: 0.5px solid var(--border-color);
   display: inline-block;
   transition: transform 0.3s ease;
 }
@@ -182,7 +282,7 @@ input:focus {
 .color-swatch {
   width: 50px;
   height: 50px;
-  border-radius: 4px;
+  border-radius: 2px;
   margin-right: 10px;
   transition: transform 0.3s ease;
 }
@@ -194,8 +294,8 @@ input:focus {
 .color-chip {
   display: inline-flex;
   align-items: center;
-  background-color: #f0f0f0;
-  border-radius: 16px;
+  background-color: var(--surface2);
+  border-radius: 2px;
   padding: 4px 8px;
   margin: 4px;
   font-size: 14px;
@@ -203,7 +303,7 @@ input:focus {
 }
 
 .color-chip:hover {
-  background-color: #e0e0e0;
+  background-color: var(--bg-deep);
 }
 
 .color-chip .color-square {
@@ -220,10 +320,11 @@ input:focus {
 .copy-button {
   margin-left: 10px;
   padding: 5px 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  background-color: var(--surface2);
+  border: 0.5px solid var(--border-color);
+  border-radius: 2px;
   cursor: pointer;
+  color: var(--text-mid);
 }
 
 /* Japanese design element */
@@ -247,7 +348,7 @@ input:focus {
 .remove-color {
   background: none;
   border: none;
-  color: #888;
+  color: var(--text-faint);
   cursor: pointer;
   font-size: 18px;
   margin-left: 4px;
@@ -255,14 +356,14 @@ input:focus {
 }
 
 .remove-color:hover {
-  color: #333;
+  color: var(--text-color);
 }
 
-/* Image Color Extractor styles */
+/* Image Color Extractor */
 .image-color-extractor {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--surface);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   padding: 20px;
   margin-top: 20px;
   animation: fadeIn 0.5s ease-out;
@@ -290,18 +391,17 @@ input:focus {
   background-color: var(--accent-color);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 2px;
   cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.1s ease;
+  transition: background-color 0.3s ease, transform 0.1s ease;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 .upload-btn:hover,
 .camera-btn:hover {
-  background-color: var(--hover-color);
+  background-color: #70291A;
 }
 
 .upload-btn:active,
@@ -319,8 +419,8 @@ input:focus {
   max-width: 100%;
   max-height: 400px;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .extracted-colors {
@@ -347,15 +447,13 @@ input:focus {
   height: 60px;
   border-radius: 50%;
   cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .color-item:hover {
   transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .selected-color {
@@ -368,13 +466,13 @@ input:focus {
 .color-preview {
   width: 80px;
   height: 80px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .selected-color p {
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .matching-colors,
@@ -390,10 +488,10 @@ input:focus {
 
 .matching-colors li,
 .matching-palettes li {
-  background-color: #f0f0f0;
+  background-color: var(--surface2);
   padding: 10px 15px;
   margin-bottom: 10px;
-  border-radius: 4px;
+  border-radius: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -402,11 +500,11 @@ input:focus {
 
 .matching-colors li:hover,
 .matching-palettes li:hover {
-  background-color: #e0e0e0;
+  background-color: var(--bg-deep);
 }
 
 .matching-colors .color-name {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .matching-colors .color-distance {
@@ -415,7 +513,7 @@ input:focus {
 }
 
 .matching-palettes .palette-name {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .matching-palettes .palette-section {
@@ -423,7 +521,7 @@ input:focus {
   font-size: 0.9em;
 }
 
-/* Responsive design */
+/* Responsive */
 @media (max-width: 768px) {
   .upload-section {
     flex-direction: column;
@@ -444,33 +542,29 @@ input:focus {
   }
 }
 
-/* Animation for new content */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .hidden {
   display: none;
 }
 
-/* Footer styles */
+/* ── Footer ── */
 .app-footer {
   margin-top: 40px;
   padding: 20px;
   text-align: center;
-  border-top: 1px solid var(--border-color);
+  border-top: 0.5px solid var(--border-color);
   background-color: var(--bg-color);
-  font-size: 0.9em;
-  color: var(--secondary-color);
+  font-size: 0.85em;
+  color: var(--text-mid);
   animation: fadeIn 0.5s ease-out;
+}
+
+.footer-wabi {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 1.4em;
+  font-weight: 700;
+  color: var(--text-faint);
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
 }
 
 .app-footer a {
@@ -480,11 +574,6 @@ input:focus {
 }
 
 .app-footer a:hover {
-  color: #b83e2e;
+  color: #70291A;
   text-decoration: underline;
-}
-
-.app-footer .emoji {
-  font-size: 1.2em;
-  margin: 0 5px;
 }
