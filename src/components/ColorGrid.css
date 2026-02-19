@@ -1,131 +1,127 @@
 .color-grid-container {
-    padding: 20px;
-  }
-  
+  padding: 20px;
+}
+
+.color-grid-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.sort-select,
+.filter-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Favorites + all sections */
+.favorite-colors-section,
+.all-colors-section {
+  margin-bottom: 32px;
+}
+
+.favorite-colors-section h2,
+.all-colors-section h2 {
+  margin-bottom: 16px;
+  font-size: 1.4em;
+  color: #333;
+}
+
+/* Grid */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 8px;
+}
+
+/* Color card */
+.color-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.color-card:hover {
+  transform: scale(1.06);
+  z-index: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Selected / active state */
+.color-card.active {
+  outline: 3px solid white;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.4);
+  transform: scale(1.06);
+  z-index: 2;
+}
+
+/* Hover overlay showing the color name */
+.color-card-hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 6px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.color-card:hover .color-card-hover {
+  opacity: 1;
+}
+
+.color-card-name {
+  color: white;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  word-break: break-word;
+}
+
+/* Star / favorite button */
+.color-favorite-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.25);
+  border: none;
+  cursor: pointer;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  line-height: 1;
+}
+
+.color-card:hover .color-favorite-btn,
+.color-favorite-btn.is-favorite {
+  opacity: 1;
+}
+
+.color-favorite-btn:hover {
+  transform: scale(1.15);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
   .color-grid-controls {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .sort-select,
-  .filter-input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .color-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    flex-direction: column;
     gap: 10px;
   }
-  
-  .color-card {
-    position: relative;
-    aspect-ratio: 1 / 1;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+
+  .color-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   }
-  
-  .color-card:hover {
-    transform: scale(1.05);
-    z-index: 1;
-  }
-  
-  .color-card.expanded {
-    grid-column: span 2;
-    grid-row: span 2;
-    z-index: 2;
-  }
-  
-  .color-popover {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    white-space: nowrap;
-    pointer-events: none;
-    z-index: 10;
-  }
-  
-  .color-name {
-    font-weight: bold;
-  }
-  
-  .color-details {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    border-radius: 8px;
-    overflow: auto;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .expanded .color-details {
-    opacity: 1;
-  }
-  
-  .color-details h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  
-  .color-details p {
-    margin: 5px 0;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .section-link {
-    cursor: pointer;
-    color: #0066cc;
-    text-decoration: underline;
-  }
-  
-  .section-link:hover {
-    color: #004499;
-  }
-  
-  .copy-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 2px;
-    margin-left: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .copy-icon {
-    width: 16px;
-    height: 16px;
-    color: #333;
-  }
-  
-  @media (max-width: 768px) {
-    .color-grid-controls {
-      flex-direction: column;
-      gap: 10px;
-    }
-  
-    .color-card.expanded {
-      grid-column: span 1;
-      grid-row: span 1;
-    }
-  }
+}

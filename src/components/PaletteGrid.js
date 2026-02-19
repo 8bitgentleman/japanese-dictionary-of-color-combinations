@@ -1,42 +1,14 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 import { Star } from "lucide-react";
 import "./PaletteGrid.css";
 
-const PaletteGrid = ({ paletteData, colorData, onPaletteClick }) => {
-  const [favorites, setFavorites] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+const PaletteGrid = ({ paletteData, colorData, onPaletteClick, favorites, toggleFavorite, isLoaded }) => {
   const [hoveredPalette, setHoveredPalette] = useState(null);
-
-  const loadFavorites = useCallback(() => {
-    const storedFavorites = localStorage.getItem("favoritePalettes");
-    if (storedFavorites) {
-      try {
-        const parsedFavorites = JSON.parse(storedFavorites);
-        setFavorites(parsedFavorites);
-      } catch (error) {
-      }
-    }
-    setIsLoaded(true);
-  }, []);
-
-  useEffect(() => {
-    loadFavorites();
-    window.addEventListener('storage', loadFavorites);
-    return () => {
-      window.removeEventListener('storage', loadFavorites);
-    };
-  }, [loadFavorites]);
-
-  useEffect(() => {
-    if (isLoaded) {
-      localStorage.setItem("favoritePalettes", JSON.stringify(favorites));
-    }
-  }, [favorites, isLoaded]);
 
   const getColorStyle = (colorName) => {
     const color = colorData[colorName];
     if (!color) {
-      return { backgroundColor: "#CCCCCC" }; // Fallback color
+      return { backgroundColor: "#CCCCCC" };
     }
 
     if (color.CMYK) {
@@ -57,24 +29,13 @@ const PaletteGrid = ({ paletteData, colorData, onPaletteClick }) => {
       return { backgroundColor: color.hex };
     }
 
-    return { backgroundColor: "#CCCCCC" }; // Fallback color
+    return { backgroundColor: "#CCCCCC" };
   };
 
   const handlePaletteClick = (paletteName) => {
     if (onPaletteClick) {
       onPaletteClick(paletteName);
     }
-  };
-
-  const toggleFavorite = (paletteName, event) => {
-    event.stopPropagation();
-    setFavorites((prevFavorites) => {
-      const newFavorites = prevFavorites.includes(paletteName)
-        ? prevFavorites.filter((name) => name !== paletteName)
-        : [...prevFavorites, paletteName];
-      
-      return newFavorites;
-    });
   };
 
   const renderPaletteCard = (paletteName, palette, isFavorite) => (
@@ -100,14 +61,13 @@ const PaletteGrid = ({ paletteData, colorData, onPaletteClick }) => {
       {(isFavorite || hoveredPalette === paletteName) && (
         <button
           className={`favorite-button ${isFavorite ? 'is-favorite' : ''}`}
-          onClick={(e) => toggleFavorite(paletteName, e)}
+          onClick={(e) => { e.stopPropagation(); toggleFavorite(paletteName); }}
         >
           <Star size={20} fill={isFavorite ? "#333333" : "none"} color="#333333" />
         </button>
       )}
     </div>
   );
-
 
   if (!isLoaded) {
     return <div>Loading...</div>;

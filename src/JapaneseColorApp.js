@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./JapaneseColorApp.css";
 import AddColorForm from "./components/AddColorForm";
 import AddPaletteForm from "./components/AddPaletteForm";
@@ -8,11 +8,21 @@ import PaletteLookup from "./components/PaletteLookup";
 import PaletteGrid from "./components/PaletteGrid";
 import ImageColorExtractor from "./components/ImageColorExtractor";
 import ColorGrid from "./components/ColorGrid";
+import ColorDetailPanel from "./components/ColorDetailPanel";
 
 const JapaneseColorApp = () => {
   const [data, setData] = useState(null);
   const [activeTab, setActiveTab] = useState("main");
   const [selectedPalette, setSelectedPalette] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
+
+  // Palette favorites — lifted from PaletteGrid so they can be shared with ColorDetailPanel
+  const [favoritePalettes, setFavoritePalettes] = useState([]);
+  const [paletteFavoritesLoaded, setPaletteFavoritesLoaded] = useState(false);
+
+  // Color favorites — new
+  const [favoriteColors, setFavoriteColors] = useState([]);
+
   const isBrowseOnly = process.env.REACT_APP_BROWSE_ONLY === "true";
 
   const apiUrl =
@@ -23,24 +33,70 @@ const JapaneseColorApp = () => {
   useEffect(() => {
     const baseUrl =
       process.env.NODE_ENV === "production"
-        ? ""
-        : "http://localhost:3000/japanese-dictionary-of-color-combinations";
+        ? "/japanese-dictionary-of-color-combinations"
+        : "";
 
     fetch(`${baseUrl}/colors.json`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-
-        return response.text(); // Temporarily use text to log the response
+        return response.json();
       })
-      .then((textData) => {
-        const jsonData = JSON.parse(textData);
+      .then((jsonData) => {
         setData(jsonData);
       })
       .catch((error) => console.error("Error loading colors.json:", error));
   }, []);
 
+  // Load palette favorites from localStorage
+  useEffect(() => {
+    const stored = localStorage.getItem("favoritePalettes");
+    if (stored) {
+      try {
+        setFavoritePalettes(JSON.parse(stored));
+      } catch (e) {}
+    }
+    setPaletteFavoritesLoaded(true);
+  }, []);
+
+  // Save palette favorites to localStorage
+  useEffect(() => {
+    if (paletteFavoritesLoaded) {
+      localStorage.setItem("favoritePalettes", JSON.stringify(favoritePalettes));
+    }
+  }, [favoritePalettes, paletteFavoritesLoaded]);
+
+  // Load color favorites from localStorage
+  useEffect(() => {
+    const stored = localStorage.getItem("favoriteColors");
+    if (stored) {
+      try {
+        setFavoriteColors(JSON.parse(stored));
+      } catch (e) {}
+    }
+  }, []);
+
+  // Save color favorites to localStorage
+  useEffect(() => {
+    localStorage.setItem("favoriteColors", JSON.stringify(favoriteColors));
+  }, [favoriteColors]);
+
+  const togglePaletteFavorite = useCallback((paletteName) => {
+    setFavoritePalettes((prev) =>
+      prev.includes(paletteName)
+        ? prev.filter((n) => n !== paletteName)
+        : [...prev, paletteName]
+    );
+  }, []);
+
+  const toggleColorFavorite = useCallback((colorName) => {
+    setFavoriteColors((prev) =>
+      prev.includes(colorName)
+        ? prev.filter((n) => n !== colorName)
+        : [...prev, colorName]
+    );
+  }, []);
 
   const handleAddColor = (newColor) => {
     setData((prevData) => {
@@ -123,6 +179,10 @@ const JapaneseColorApp = () => {
     setActiveTab("main");
   };
 
+  const handleColorClick = (colorName) => {
+    setSelectedColor(colorName);
+  };
+
   const renderActiveTab = () => {
     if (!data) return null;
 
@@ -154,6 +214,9 @@ const JapaneseColorApp = () => {
             paletteData={data.palettes}
             colorData={data.colors}
             onPaletteClick={handlePaletteClick}
+            favorites={favoritePalettes}
+            toggleFavorite={togglePaletteFavorite}
+            isLoaded={paletteFavoritesLoaded}
           />
         );
       case "extractor":
@@ -164,7 +227,30 @@ const JapaneseColorApp = () => {
           />
         );
       case "colors":
-        return <ColorGrid colorData={data.colors} onSectionClick={handleSectionClick} />;
+        return (
+          <>
+            <ColorGrid
+              colorData={data.colors}
+              onSectionClick={handleSectionClick}
+              onColorClick={handleColorClick}
+              selectedColor={selectedColor}
+              favoriteColors={favoriteColors}
+              toggleColorFavorite={toggleColorFavorite}
+            />
+            {selectedColor && (
+              <ColorDetailPanel
+                colorName={selectedColor}
+                colorData={data.colors}
+                paletteData={data.palettes}
+                onClose={() => setSelectedColor(null)}
+                favoriteColors={favoriteColors}
+                toggleColorFavorite={toggleColorFavorite}
+                favoritePalettes={favoritePalettes}
+                togglePaletteFavorite={togglePaletteFavorite}
+              />
+            )}
+          </>
+        );
       default:
         return null;
     }
