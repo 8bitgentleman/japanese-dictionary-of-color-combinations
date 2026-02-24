@@ -17,6 +17,7 @@ const JapaneseColorApp = () => {
   const [selectedPalette, setSelectedPalette] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedGridPalette, setSelectedGridPalette] = useState(null);
+  const [selectedColorPalette, setSelectedColorPalette] = useState(null);
 
   // Palette favorites — lifted from PaletteGrid so they can be shared with ColorDetailPanel
   const [favoritePalettes, setFavoritePalettes] = useState([]);
@@ -252,9 +253,20 @@ const JapaneseColorApp = () => {
                 colorName={selectedColor}
                 colorData={data.colors}
                 paletteData={data.palettes}
-                onClose={() => setSelectedColor(null)}
+                onClose={() => { setSelectedColor(null); setSelectedColorPalette(null); }}
                 favoriteColors={favoriteColors}
                 toggleColorFavorite={toggleColorFavorite}
+                favoritePalettes={favoritePalettes}
+                togglePaletteFavorite={togglePaletteFavorite}
+                onPaletteClick={setSelectedColorPalette}
+              />
+            )}
+            {selectedColorPalette && (
+              <PaletteDetailPanel
+                paletteName={selectedColorPalette}
+                paletteData={data.palettes}
+                colorData={data.colors}
+                onClose={() => setSelectedColorPalette(null)}
                 favoritePalettes={favoritePalettes}
                 togglePaletteFavorite={togglePaletteFavorite}
               />

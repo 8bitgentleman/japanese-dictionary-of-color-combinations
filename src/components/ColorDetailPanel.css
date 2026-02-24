@@ -176,6 +176,7 @@
   border-radius: 0;
   overflow: hidden;
   transition: box-shadow 0.2s;
+  cursor: pointer;
 }
 
 .cdp-palette-card.favorite {
@@ -183,7 +184,7 @@
 }
 
 .cdp-palette-card:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .cdp-palette-swatches {
@@ -213,7 +214,25 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-right: 8px;
+  margin-right: 4px;
+}
+
+.cdp-palette-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.cdp-palette-chevron {
+  color: var(--text-faint);
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.cdp-palette-card:hover .cdp-palette-chevron {
+  opacity: 1;
+  transform: translateX(2px);
 }
 
 .cdp-palette-star {

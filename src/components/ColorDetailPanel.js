@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { Star, Clipboard, Check, X } from 'lucide-react';
+import { Star, Clipboard, Check, X, ChevronRight } from 'lucide-react';
 import './ColorDetailPanel.css';
 
 const getColorStyle = (cmyk) => {
@@ -18,6 +18,14 @@ const getRgbString = (cmyk) => {
   return `${r}, ${g}, ${b}`;
 };
 
+const getHexString = (cmyk) => {
+  const [c, m, y, k] = cmyk.map(Number);
+  const r = Math.round(255 * (1 - c / 100) * (1 - k / 100));
+  const g = Math.round(255 * (1 - m / 100) * (1 - k / 100));
+  const b = Math.round(255 * (1 - y / 100) * (1 - k / 100));
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+};
+
 const ColorDetailPanel = ({
   colorName,
   colorData,
@@ -27,6 +35,7 @@ const ColorDetailPanel = ({
   toggleColorFavorite,
   favoritePalettes,
   togglePaletteFavorite,
+  onPaletteClick,
 }) => {
   const [copiedValue, setCopiedValue] = useState('');
 
@@ -58,6 +67,7 @@ const ColorDetailPanel = ({
 
   const cmykString = colorInfo.CMYK.join(', ');
   const rgbString = getRgbString(colorInfo.CMYK);
+  const hexString = getHexString(colorInfo.CMYK);
 
   const CopyButton = ({ text }) => (
     <button className="cdp-copy-button" onClick={(e) => handleCopy(text, e)}>
@@ -106,6 +116,11 @@ const ColorDetailPanel = ({
             <span className="cdp-value-text">{rgbString}</span>
             <CopyButton text={rgbString} />
           </div>
+          <div className="cdp-value-row">
+            <span className="cdp-value-label">HEX</span>
+            <span className="cdp-value-text">{hexString}</span>
+            <CopyButton text={hexString} />
+          </div>
         </div>
 
         {colorPalettes.length > 0 && (
@@ -117,7 +132,14 @@ const ColorDetailPanel = ({
               {colorPalettes.map(([paletteName, palette]) => {
                 const isFav = favoritePalettes.includes(paletteName);
                 return (
-                  <div key={paletteName} className={`cdp-palette-card ${isFav ? 'favorite' : ''}`}>
+                  <div
+                    key={paletteName}
+                    className={`cdp-palette-card ${isFav ? 'favorite' : ''}`}
+                    onClick={() => onPaletteClick(paletteName)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && onPaletteClick(paletteName)}
+                  >
                     <div className="cdp-palette-swatches">
                       {palette.colors.map((cName) => (
                         <div
@@ -130,17 +152,20 @@ const ColorDetailPanel = ({
                     </div>
                     <div className="cdp-palette-footer">
                       <span className="cdp-palette-name">{paletteName}</span>
-                      <button
-                        className={`cdp-palette-star ${isFav ? 'is-favorite' : ''}`}
-                        onClick={(e) => { e.stopPropagation(); togglePaletteFavorite(paletteName); }}
-                        aria-label={isFav ? `Unfavorite ${paletteName}` : `Favorite ${paletteName}`}
-                      >
-                        <Star
-                          size={16}
-                          fill={isFav ? '#f5a623' : 'none'}
-                          color={isFav ? '#f5a623' : '#999'}
-                        />
-                      </button>
+                      <div className="cdp-palette-actions">
+                        <button
+                          className={`cdp-palette-star ${isFav ? 'is-favorite' : ''}`}
+                          onClick={(e) => { e.stopPropagation(); togglePaletteFavorite(paletteName); }}
+                          aria-label={isFav ? `Unfavorite ${paletteName}` : `Favorite ${paletteName}`}
+                        >
+                          <Star
+                            size={16}
+                            fill={isFav ? '#f5a623' : 'none'}
+                            color={isFav ? '#f5a623' : '#999'}
+                          />
+                        </button>
+                        <ChevronRight size={14} className="cdp-palette-chevron" />
+                      </div>
                     </div>
                   </div>
                 );
