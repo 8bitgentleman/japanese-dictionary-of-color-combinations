@@ -33,12 +33,7 @@ const JapaneseColorApp = () => {
       : "http://localhost:5050/api/update-colors";
 
   useEffect(() => {
-    const baseUrl =
-      process.env.NODE_ENV === "production"
-        ? "/japanese-dictionary-of-color-combinations"
-        : "";
-
-    fetch(`${baseUrl}/colors.json`)
+    fetch(`${process.env.PUBLIC_URL}/colors.json`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
